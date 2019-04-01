@@ -19,3 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/admin/user', 'User\AdminUserController');
+Route::post('admin/user/passwor/{id}/update', 'User\AdminUserController@updatePassword')->name('update.password');
+/*Route::post('admin/user/passwor/{id}/update', function() {
+	return 'opa, chegou aqui';
+})->name('update.password');*/
+

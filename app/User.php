@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $dates = ['created_at', 'updated_at', 'email_verified_at'];
+    
     use Notifiable;
 
     /**
