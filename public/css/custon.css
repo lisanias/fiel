@@ -1,0 +1,9 @@
+.ucase {
+	text-transform: uppercase;
+}
+.lcase {
+	text-transform: lowercase;
+}
+input {
+	text-transform: uppercase;
+}

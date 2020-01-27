@@ -25,3 +25,15 @@ Route::post('admin/user/passwor/{id}/update', 'User\AdminUserController@updatePa
 	return 'opa, chegou aqui';
 })->name('update.password');*/
 
+Route::resource('/members', 'Member\MemberController');
+Route::post('/members/find', 'Member\FindMemberController@find')->name('member.find');
+Route::get('/members/new/dados', 'Member\FindMemberController@dadosBase')->name('member.new.dados');
+
+Route::resource('/endereco', 'Address\AddressController');
+
+Route::resource('/telefone', 'Phone\PhoneController');
+
+Route::get('/imprimir', function() {
+	return view('members.id');
+})->name('imprimir');
+

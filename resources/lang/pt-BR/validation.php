@@ -30,7 +30,7 @@ return [
     ],
     'boolean'              => 'O campo :attribute deve conter o valor verdadeiro ou falso.',
     'confirmed'            => 'A confirmação para o campo :attribute não coincide.',
-    'date'                 => 'O campo :attribute não contém uma data válida.',
+    'date'                 => 'O campo ":attribute" não é uma data válida.',
     'date_equals'          => 'O campo :attribute deve ser uma data igual a :date.',
     'date_format'          => 'A data informada para o campo :attribute não respeita o formato :format.',
     'different'            => 'Os campos :attribute e :other devem conter valores diferentes.',
@@ -41,7 +41,7 @@ return [
     'email'                => 'O campo :attribute não contém um endereço de email válido.',
     'exists'               => 'O valor selecionado para o campo :attribute é inválido.',
     'file'                 => 'O campo :attribute deve conter um arquivo.',
-    'filled'               => 'O campo :attribute é obrigatório.',
+    'filled'               => 'Este campo precisa estar preenchido.',
     'gt'                   => [
         'numeric' => 'O campo :attribute deve ser maior que :value.',
         'file'    => 'O arquivo :attribute deve ser maior que :value kilobytes.',
@@ -93,7 +93,7 @@ return [
     'numeric'              => 'O campo :attribute deve conter um valor numérico.',
     'present'              => 'O campo :attribute deve estar presente.',
     'regex'                => 'O formato do valor informado no campo :attribute é inválido.',
-    'required'             => 'O campo :attribute é obrigatório.',
+    'required'             => 'O campo ":attribute" é obrigatório.',
     'required_if'          => 'O campo :attribute é obrigatório quando o valor do campo :other é igual a :value.',
     'required_unless'      => 'O campo :attribute é obrigatório a menos que :other esteja presente em :values.',
     'required_with'        => 'O campo :attribute é obrigatório quando :values está presente.',
@@ -129,6 +129,12 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'nome' => [
+            'filled' => 'Voce não inseriu nenhum nome? Escreva um nome para procuramos na base de dados!',
+        ],
+        'igreja_id' => [
+            'required' => 'Escolha uma igreja da lista ou insira uma nova igreja',
         ],
     ],
 
@@ -171,10 +177,11 @@ return [
         'subject'               => 'assunto',
         'text'                  => 'texto',
         'time'                  => 'hora',
-        'title'                 => 'título',
+        'title'                 => 'Título',
         'username'              => 'usuário',
         'year'                  => 'ano',
         'email'                 => 'e-mail',
         'remember'              => 'lembrar-se de mim',
+        'dnas'              => 'Data de Nascimento',
     ],
 ];

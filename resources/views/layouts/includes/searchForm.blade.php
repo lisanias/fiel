@@ -1,8 +1,8 @@
-	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="{{__('Search for...')}}" aria-label="Search" aria-describedby="basic-addon2" disabled>
-	  <div class="input-group-append">
-	    <button class="btn btn-primary btn-sm" type="button" disabled>
-	      <i class="fas fa-search fa-sm"></i>
-	    </button>
-	  </div>
+{!! Form::open(['route' => 'member.find', 'class' => 'd-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search']) !!}
+	  <div class="input-group">
+	  	  {!! Form::text('nome', null, ['class' => 'form-control lcase', 'placeholder'=>__('Procurar por obreiros...')]) !!}		 
+		  <div class="input-group-append">
+		  	{!! Form::button('<i class="fas fa-search fa-sm"></i>', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm']) !!}		    
+		  </div>
 	</div>
+{!! Form::close() !!}
