@@ -23,7 +23,12 @@ class Member extends Model
 
     public function addresses()
     {
-    	return $this->hasMany('App\Address');
+    	return $this->morphMany(Address::class, 'addressable');
+    }
+
+    public function igreja()
+    {
+        return $this->belongsTo('App\Igreja');
     }
 
 }

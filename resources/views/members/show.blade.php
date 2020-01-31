@@ -35,61 +35,86 @@
 
 						<div class="card shadow">
 
+							
+							<div class="card-header">
+								<i class="fas fa-id-card-alt"></i> Dados Pessoais
+							</div>
+
 							<div class="card-body">
 
-								<table class="table m-0">
-				                    <tbody>
-				                        @if(!$member->nome_abreviado == null)
-				                        <tr>
-				                            <th class="text-right w-25 text-info" scope="row">Mome Abreviado</th>
-				                            <td class=" w-75">{{ $member->nome_abreviado }}</td>
-				                        </tr>
-				                        @endif
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle"  scope="row"><small class="text-uppercase font-weight-lighter">{{__('E-mail')}}</small></th>
-				                            <td class="w-75 align-middle">{!! $member->email ? $member->email : "<i class='fas fa-ellipsis-h text-warning'></i>" !!}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Data de nascimento')}}</small></th>
-				                            <td class=" w-75 align-middle">{!! $member->dnas ? $member->dnas->format('d-m-Y') : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Natural de:')}}</small></th>
-				                            <td class=" w-75 align-middle">{{ $member->naturalde }}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('RG')}}</small></th>
-				                            <td class="w-75 align-middle">{{ $member->rg }}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('CPF')}}</small></th>
-				                            <td class="w-75 align-middle">{{ $member->cpf }}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Igreja (Antigo)')}}</small></th>
-				                            <td class="w-75 align-middle">{{ $member->igreja ?? '. . . . ' }}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Igreja ID')}}</small></th>
-				                            <td class="w-75 align-middle">
-				                            	
-				                            		{{ $igreja->name ?? '' }}
-				                            	
-				                            </td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Data de Diliação')}}</small></th>
-				                            <td class="w-75 align-middle">{!! $member->data_filiacao ? $member->data_filiacao->format('d-m-Y') : "<i class='fas fa-times-circle text-danger'></i>" !!}</td>
-				                        </tr>
-				                        <tr>
-				                            <th class="text-right w-25 text-info align-middle" scope="row"><small class="text-uppercase font-weight-lighter">{{__('Data de Ordenação')}}</small></th>
-				                            <td class="w-75 align-middle">{!! $member->data_ordenacao ? $member->data_ordenacao->format('d-m-Y') : "<i class='fas fa-times-circle text-danger'></i>" !!}</td>
-				                        </tr>
-				                    </tbody>
-				                </table>
-				            </div>
+								@if(!$member->nome_abreviado == null)
+									<div class='label'>{{_('Mome Abreviado')}}<</div>
+									<div class="field">{{ $member->nome_abreviado }}</div>
+								@endif
 
-			                <div class="card-footer">
+								<div class='label'>
+									<i class='fas fa-at'></i>
+									{{_('E-mail')}}
+								</div>
+								<div class="field w75">
+									{!! $member->email ? $member->email : "<i class='fas fa-ellipsis-h text-warning'></i>" !!}
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-birthday-cake'></i>
+									{{__('Data de nascimento')}}
+								</div>
+								<div class="field w75">
+									{!! $member->dnas ? $member->dnas->format('d-m-Y') : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-map-marker-alt'></i>
+									{{__('Local de nascimento')}}
+								</div>
+								<div class="field w75">
+									{!! $member->naturalde ? $member->naturalde : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-id-card'></i>
+									{{__('RG')}}
+								</div>
+								<div class="field w75">
+									{!! $member->rg ? $member->rg : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-money-check'></i>
+									{{__('CPF')}}
+								</div>
+								<div class="field w75">
+									{!! $member->cpf ? $member->cpf : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-church'></i>
+									{{__('Igreja')}}
+								</div>
+								<div class="field w75">
+									@if($igreja)
+										{!! $igreja->nome ? $igreja->nome : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+									@else
+										{!! $member->igreja ? $member->igreja : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+									@endif
+								</div>
+
+								<div class='label'>
+									<i class='fas fa-user-plus'></i>
+									{{__('Data de Filiação')}}
+								</div>
+								<div class="field w75">
+									{!! $member->data_filiacao ? $member->data_filiacao->format('d-m-Y') : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
+								<div class='label'>
+									<i class="fas fa-book-reader"></i>
+									{{__('Data de Ordenação')}}
+								</div>
+								<div class="field w75">
+									{!! $member->data_ordenacao ? $member->data_ordenacao->format('d-m-Y') : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								</div>
+
 			    				<a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary shadow-sm">
 							    	<i class="fas fa-edit fa-sm text-white-50"></i>
 							    	{{__('Editar')}}
@@ -103,6 +128,9 @@
 					<div class="col col-md-6">
 						
 						<div class="card shadow">
+							<div class="card-header">
+								<i class="far fa-envelope"></i> Endereço
+							</div>
 							<div class="card-body">
 								
 								@foreach ($addresses as $address)
@@ -110,7 +138,7 @@
 										<p class="mb-0">
 											<i class="fas fa-address-card text-info"></i>
 											<small class="text-uppercase font-weight-lighter text-info"><strong>{{ $address->tipo ?? 'Endereco' }}</strong></small>
-											<a href="{{ route('endereco.edit', $address->id) }}" class="card-link float-right">
+											<a href="{{ route('address.edit', $address->id) }}" class="card-link float-right">
 										    	<i class="fas fa-edit fa-sm text-white-50"></i>
 										    	{{__('Editar')}}
 										    </a>
@@ -124,17 +152,18 @@
 									</address>
 								@endforeach
 
-							</div>
-							<div class="card-footer">
-			    				
-							    <a href="{{ route('endereco.create') }}" class="btn btn-success shadow-sm">
+								<a href="{{ route('members.address.create', $member->id) }}" class="btn btn-success shadow-sm">
 							    	<i class="fas fa-plus fa-sm text-white-50"></i>
 							    	{{__('Adicionar')}}
 							    </a>
+
 							</div>
 						</div>
 
 						<div class="card shadow mt-4">
+							<div class="card-header">
+								<i class="fas fa-phone"></i> Telefones 
+							</div>
 							<div class="card-body">
 								<i class='fas fa-phone-square text-info'></i>
 								<small class="text-uppercase font-weight-lighter text-info"><strong>Telefones:</strong></small><br>
@@ -143,17 +172,15 @@
 
 								<li>
 									{{ $phone->telefone_tipo }} - {{ $phone->numero }}
-									<a href="{{ route('telefone.edit', $phone->id) }}" class="card-link float-right">
+									<a href="{{ route('phones.edit', $phone->id) }}" class="card-link float-right">
 								    	<i class="fas fa-edit fa-sm text-white-50"></i>
 								    	{{__('Editar')}}
 								    </a>
 								</li>
 
 								@endforeach
-										
-							</div>
-							<div class="card-footer">
-							    <a href="{{ route('telefone.create') }}" class="btn btn-success shadow-sm">
+							
+							    <a href="{{ route('phones.create') }}" class="btn btn-success shadow-sm" >
 							    	<i class="fas fa-plus fa-sm text-white-50"></i>
 							    	{{__('Adicionar')}}
 							    </a>

@@ -20,6 +20,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
+    <!-- Styles Bootstrap -->    
+    <link href="{{ asset('bootstrap_4.4.1/bootstrap-grid.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap_4.4.1/bootstrap-reboot.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap_4.4.1/bootstrap.min.css') }}" rel="stylesheet">
+
     <!-- Styles SB ADMIN 2-->    
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custon.css') }}" rel="stylesheet">
@@ -78,7 +83,7 @@
             <div class="row justify-content-center">
 
                 @if (session('alert'))
-                    <div class="alert alert-{{ session('alertType') }}">
+                    <div class="alert alert-{{ session('alert_type') }}">
                         {{ session('alert') }}
                     </div>
                 @endif

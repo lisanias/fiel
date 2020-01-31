@@ -25,7 +25,7 @@ function formatar(mascara, documento){
 
 <!-- Nome -->
 <div class="form-group">
-	{!! Form::label('nome',__('Nome')) !!}
+	{!! Form::label('nome',__('Nome completo')) !!}
 
 	@error('nome')
 		{!! Form::text('nome', null, ['class' => 'form-control is-invalid']) !!}
@@ -37,7 +37,7 @@ function formatar(mascara, documento){
 
 <!-- nome_abreviado -->
 <div class="form-group">
-	{!! Form::label('nome_abreviado',__('Nome abreviado para impressao')) !!}
+	{!! Form::label('nome_abreviado',__('Nome para impressao na ID Ministerial')) !!}
 			
 	@error('nome_abreviado')
 		{!! Form::text('nome_abreviado', null, ['class' => 'form-control is-invalid ucase']) !!}
@@ -108,22 +108,24 @@ function formatar(mascara, documento){
 	</div>
 
 	
-
+	@if(!$member->igreja_id)
 	<!-- Igreja (Cdastro antigo e lugar para inserir igreja abreviada se for necessário) -->
 	<div class="form-group">
-		{!! Form::label('igreja',__('Igreja - Nome personalizado para identidade Ministerial')) !!}
-		{!! Form::text('igreja', null, ['class' => 'form-control']) !!}
-
-		@if ($errors->has('igreja'))
-		<span class="invalid-feedback" role="alert">
-			<strong>{{ $errors->first('igreja') }}</strong>
-		</span>
-		@endif
-		<small id="passwordHelpBlock" class="form-text text-muted">
-		  Campo da base de dados antiga contendo o nome da igreja. Poderá ser usado, caso necessário, para inserir o nome de igreja personalizado para este usuário no nome da igreja para a Id Ministeria: MSM - Vila Isabel.
-		</small>
+		<div class="card border-warning">
+			<div class="card-header border-warning">{{ __('Igreja - NÃO VINCULADA A NENHUMA IGREJA') }}</div>
+			<div class="card-body">
+				{!! Form::text('igreja', null, ['class' => 'form-control border-warning','disabled']) !!}
+				<p class="card-text text-warning" style="padding-top:1em;">
+					Campo da base de dados antiga contendo o nome da igreja. <br>
+					Escolha uma igreja ja cadastrada na fiel no campo abaixo ou adicione uma nova igreja como filiada da Fiel.
+				</p>
+			</div>
+			<div class="card-footer border-warning">
+				<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Adicionar Igreja</a>
+			</div>
+		</div>
 	</div>
-
+	@endif
 	<!-- Igreja  -->
 	<!-- Colocar lista de igrejas da tabela -->
 	<div class="form-group">

@@ -12,28 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
 
-Route::resource('/admin/user', 'User\AdminUserController');
+Route::resource('admin/user', 'User\AdminUserController');
 Route::post('admin/user/passwor/{id}/update', 'User\AdminUserController@updatePassword')->name('update.password');
-/*Route::post('admin/user/passwor/{id}/update', function() {
-	return 'opa, chegou aqui';
-})->name('update.password');*/
 
-Route::resource('/members', 'Member\MemberController');
-Route::post('/members/find', 'Member\FindMemberController@find')->name('member.find');
-Route::get('/members/new/dados', 'Member\FindMemberController@dadosBase')->name('member.new.dados');
+Route::resource('members', 'Member\MemberController');
+Route::post('members/find', 'Member\FindMemberController@find')->name('member.find');
+Route::get('members/new/dados', 'Member\FindMemberController@dadosBase')->name('member.new.dados');
 
-Route::resource('/endereco', 'Address\AddressController');
+Route::resource('/address', 'Address\AddressController')->except(['index', 'create', 'store']);
+Route::resource('members.address', 'Address\AddressController')->only('create', 'store');
+//Route::resource('igrejas.address', 'Address\AddressController');
 
-Route::resource('/telefone', 'Phone\PhoneController');
+Route::resource('phones', 'Phone\PhoneController');
 
-Route::get('/imprimir', function() {
+
+Route::get('imprimir', function() {
 	return view('members.id');
 })->name('imprimir');
 

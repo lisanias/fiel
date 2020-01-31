@@ -80,8 +80,10 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
         $phones = $member->phones('Phone')->get();
-        $addresses = $member->addresses('Address')->get();
-        $igreja = Igreja::find($member->igreja_id);
+        $addresses = $member->addresses;
+        $igreja = $member->igreja('Igreja')->first();
+        //dd($addresses->id);
+        //die();
         return view('members.show', compact('member', 'phones', 'addresses', 'igreja'));
     }
 
@@ -94,9 +96,7 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Member::find($id);
-        $igrejas = Igreja::get()->pluck('NameCidade', 'id');
-        //dd($igrejas);
-        //die();
+        $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
         return view('members.edit', compact('member', 'igrejas'));
     }
 
@@ -123,8 +123,24 @@ class MemberController extends Controller
             'data_ordenacao' => 'required|date',
         ]);
 
+        // Pega os dados do formulário
+        $dataForm = $request->all();
+
+        // Busca o membro pelo id
         $member = Member::find($id);
-        return "escript de alteração na base de dados do membro id: {{$id}}";
+
+        // Atualiza a base de dados
+        $update = $member->update($dataForm);
+        
+        // retorna para pagina do membro ou continue em edit se deu algo errado
+        if( $update )
+            return redirect()
+                ->route( 'members.show', $member->id )
+                ->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
+        else
+            return redirect()
+                ->route('members.edit', $id )
+                ->with(['alert'=>'Não foi possivel gravar os dados!', 'alert_type'=>'danger']);
     }
 
     /**

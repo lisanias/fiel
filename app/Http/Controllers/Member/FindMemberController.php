@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Session;
 
 class FindMemberController extends Controller
 {
-    public function find(Request $request)
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
+	public function find(Request $request)
     {
         $validatedData = $request->validate([
             'nome' => 'filled|string',
