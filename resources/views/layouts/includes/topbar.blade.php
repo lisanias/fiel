@@ -6,7 +6,7 @@
           </button>
 
           <!-- Topbar Search -->
-          @include('layouts.includes.searchForm')          
+          @yield('mainsearch', View::make('layouts.includes.searchForm'))
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -19,7 +19,7 @@
               <!-- Dropdown - Messages -->
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
-                  @include('layouts.includes.searchForm')
+                  @yield('mainsearch')
                 </form>
               </div>
             </li>

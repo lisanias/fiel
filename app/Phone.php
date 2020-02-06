@@ -11,4 +11,9 @@ class Phone extends Model
     protected $fillable = [
         'ddd', 'numero', 'telefone_tipo', 'member_id',
     ];
+
+    public function member()
+    {
+        return $this->belongsTo('App\Member');
+    }
 }

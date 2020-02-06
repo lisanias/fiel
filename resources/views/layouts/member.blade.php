@@ -2,6 +2,10 @@
 
 @section('title', __('Membros')) 
 
+@section('mainsearch')
+	@include('layouts.includes.searchForm')
+@endsection
+
 @section('page-title', __('Membros')) 
 <!-- URL::previous()  -->
 @section('page-title-r')

@@ -43,7 +43,7 @@
         {{__('Menu')}}
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- MEMBROS - Nav Item - Pages Collapse Menu -->
       <li class="nav-item {{ Request::is('members') ? 'active' : null}}{{ Request::is('members/*') ? 'active' : null}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-user"></i>
@@ -58,26 +58,42 @@
         </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <!-- IGREJAS - Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item {{ Request::is('igrejas') ? 'active' : null}}{{ Request::is('igrejas/*') ? 'active' : null}}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIgreja" aria-expanded="true" aria-controls="collapseIgreja">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-church"></i>
           <span>{{__('Igrejas')}}</span>
         </a>
         <div id="collapseIgreja" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('Igrejas')}}</h6>
-            <a class="collapse-item" href="utilities-color.html">{{__('Listar')}}</a>
-            <a class="collapse-item" href="utilities-border.html">{{__('Adicionar')}}</a>
+          <a class="collapse-item" href="{{ route('igrejas.index') }}">{{__('Listar')}}</a>
+            <a class="collapse-item" href="{{ route('igrejas.create') }}">{{__('Adicionar')}}</a>
            
           </div>
         </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
+      <!-- REGIONAIS - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegional" aria-expanded="true" aria-controls="collapseRegional">
+          <i class="fas fa-fw fa-map-marked-alt"></i>
+          <span>{{__('Regionais')}}</span>
+        </a>
+        <div id="collapseRegional" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">{{__('Igrejas')}}</h6>
+            <a class="collapse-item" href="#">{{__('Listar')}}</a>
+            <a class="collapse-item" href="#">{{__('Vencidas')}}</a>
+            <a class="collapse-item" href="{{ route('imprimir') }}">{{__('iMPRIMIR')}}</a>           
+          </div>
+        </div>
+      </li>
+
+      <!-- Identidade ministerial, ID - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIdMinisterial" aria-expanded="true" aria-controls="collapseIdMinisterial">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-id-card"></i>
           <span>{{__('Identidades Ministeriais')}}</span>
         </a>
         <div id="collapseIdMinisterial" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -90,8 +106,10 @@
         </div>
       </li>
      
+     
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

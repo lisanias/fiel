@@ -60,9 +60,9 @@ class AddressController extends Controller
         $address = $member->addresses()->create($dataForm);
 
         if ($address) 
-         echo 'ok';
+            return redirect()->route('members.show', $member->id);
          else
-         echo 'falha';
+         return redirect()->route('members.adresss.create', $member->id);
     }
 
     /**
@@ -122,11 +122,11 @@ class AddressController extends Controller
         // retorna para pagina do membro ou continue em edit se deu algo errado
         if( $update )
             return redirect()
-                ->route( 'members.show', $origem->id )
+                ->route( $origem->getTable().'.show', $origem->id )
                 ->with(['alert'=>'Endereço atualizado!', 'alert_type'=>'success']);
         else
             return redirect()
-                ->route('members.edit', $id )
+                ->route( $origem->getTable().'.edit', $id )
                 ->with(['alert'=>'Não foi possivel gravar os dados!', 'alert_type'=>'danger']);
         
     }
@@ -139,6 +139,11 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $address = Address::find($id);
+        $origem = $address->addressable;
+        //dd($origem);
+        $address->delete();
+
+        return redirect()->route( $origem->getTable().'.show', $origem->id);
     }
 }

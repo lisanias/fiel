@@ -93,7 +93,9 @@
 								</div>
 								<div class="field w75">
 									@if($igreja)
-										{!! $igreja->nome ? $igreja->nome : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+										<a href="{{ route('igrejas.show', $igreja->id)}}" class='' >
+											{{ $igreja->nome }}
+										</a>
 									@else
 										{!! $member->igreja ? $member->igreja : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
 									@endif
@@ -171,16 +173,16 @@
 								@foreach ($phones as $phone)
 
 								<li>
-									{{ $phone->telefone_tipo }} - {{ $phone->numero }}
+									{{ $phone->telefone_tipo }} - @if($phone->ddd)({{ $phone->ddd }})@endif {{ $phone->numero }}
 									<a href="{{ route('phones.edit', $phone->id) }}" class="card-link float-right">
 								    	<i class="fas fa-edit fa-sm text-white-50"></i>
 								    	{{__('Editar')}}
-								    </a>
+									</a>
 								</li>
 
 								@endforeach
 							
-							    <a href="{{ route('phones.create') }}" class="btn btn-success shadow-sm" >
+							    <a href="{{ route('members.phones.create', $member->id) }}" class="btn btn-success shadow-sm" >
 							    	<i class="fas fa-plus fa-sm text-white-50"></i>
 							    	{{__('Adicionar')}}
 							    </a>

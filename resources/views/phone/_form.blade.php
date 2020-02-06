@@ -1,4 +1,4 @@
-<div class="form-row">
+<div class="form-row" style='margin-bottom:20px'>
 	<!-- Tipo de endereço -->
 	<div class="form-group col-md-2">
 		{!! Form::label('ddd',__('DDD')) !!}
@@ -33,9 +33,9 @@
 		@enderror
 	</div>
 </div>
-    
+
 <!-- Botão de ação -->
-	{!! Form::button(__($btn_texto), ['type' => 'submit', 'class' => 'btn btn-primary', 'style'=>'margin-top:20px']) !!}
+{!! Form::button(__($btn_texto), ['type' => 'submit', 'class' => 'btn btn-primary float-left']) !!}
 
 <script>
 	function formatar(mascara, documento){

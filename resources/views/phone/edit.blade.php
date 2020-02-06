@@ -2,6 +2,10 @@
 
 @push('title', __('Telefone')) 
 
+@section('page-title--r')
+link
+@endsection
+
 @section('form')
 
             <div class="card-header">
@@ -16,8 +20,17 @@
 
 				@include ("phone._form", ['btn_texto' => 'Salvar alteração'])
 
-				{!! Form::close() !!}					
+				{!! Form::close() !!}
+				
+				<div class='float-right'>
+					<form id='apagar' method="post" action="{!! route('phones.destroy', $phone->id) !!}"> 
+						{!! Form::token() !!}
+						<input type="hidden" name="_method" value="DELETE">
+						<button type="submit" class='btn btn-danger'><i class="fas fa-trash-alt"></i></button>
+					</form>
+				</div>
 
 			</div>
+
 			
 @endsection

@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Igreja;
 use App\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
-class FindMemberController extends Controller
+class CustomMemberController extends Controller
 {
 	public function __construct()
     {
@@ -41,14 +42,16 @@ class FindMemberController extends Controller
 
 	    //procurar pelas palavras em qualquer lugar do nome
 	    $procurar = str_replace(" ","%",$procurar);
-        $members = Member::where('nome', 'LIKE', '%'.$procurar.'%')->orderBy('nome')->get();
-        
+		$members = Member::where('nome', 'LIKE', '%'.$procurar.'%')->orderBy('nome')->get();
+		        
         return view('members.resultadoProcura', compact('members', 'nome'));
     }
 
     public function dadosBase(Request $request) 
-    {
-    	$igrejas = Igreja::orderBy('name', 'ASC', SORT_REGULAR, true)->get()->pluck('NameCidade', 'id');
-    	return view('members.create', compact('igrejas'));
+    {		
+		//$igrejas = Igreja::orderBy('nome', 'ASC', SORT_REGULAR, true)->get()->pluck('NomeCidade', 'id');
+		//$igrejas = Igreja::orderBy('nome', 'ASC', SORT_REGULAR, true)->get();		
+    	// return view('igreja.index', compact('igrejas'));
+    	return redirect(route('igrejas.index'));
     }
 }

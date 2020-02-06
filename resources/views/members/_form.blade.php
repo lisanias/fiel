@@ -107,9 +107,9 @@ function formatar(mascara, documento){
 		@enderror
 	</div>
 
-	
+	@if(isset($member))
 	@if(!$member->igreja_id)
-	<!-- Igreja (Cdastro antigo e lugar para inserir igreja abreviada se for necessário) -->
+	<!-- Igreja (Cadastro antigo não mais usado... e preciso cadastrar ou selecionar igreja do cadastro) -->
 	<div class="form-group">
 		<div class="card border-warning">
 			<div class="card-header border-warning">{{ __('Igreja - NÃO VINCULADA A NENHUMA IGREJA') }}</div>
@@ -125,6 +125,7 @@ function formatar(mascara, documento){
 			</div>
 		</div>
 	</div>
+	@endif
 	@endif
 	<!-- Igreja  -->
 	<!-- Colocar lista de igrejas da tabela -->

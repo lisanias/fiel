@@ -29,9 +29,14 @@ class PhoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        //dd($id);
+        //die;
+        
+        $member = Member::find($id);
+        
+        return view('phone.create', compact('member'));
     }
 
     /**
@@ -40,9 +45,12 @@ class PhoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $member = Member::find($id);
+        $member->phones()->create($request->all());
+
+        return redirect()->route('members.show', $member->id);
     }
 
     /**
@@ -114,7 +122,11 @@ class PhoneController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $phone = Phone::find($id);
+        $member_id = $phone->member_id;
+        $phone->delete();
+
+        return redirect()->route('members.show', $member_id);
     }
     
     

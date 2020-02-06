@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Igreja;
 
+use App\Igreja;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class IgrejaController extends Controller
      */
     public function index()
     {
-        //
+        $igrejas = Igreja::orderBy('nome', 'ASC', SORT_REGULAR, true)->paginate(5);	
+        return view('igreja.index', compact('igrejas'));
     }
 
     /**
@@ -47,6 +49,10 @@ class IgrejaController extends Controller
     public function show($id)
     {
         //
+        $igreja = Igreja::find($id);
+        $members = $igreja->member;
+        $pastor = $igreja->member->find($igreja->pastor_id);
+        return view('igreja.show', compact('igreja', 'members', 'pastor'));
     }
 
     /**
@@ -58,6 +64,7 @@ class IgrejaController extends Controller
     public function edit($id)
     {
         //
+        echo 'editar igreja: ', $id; 
     }
 
     /**

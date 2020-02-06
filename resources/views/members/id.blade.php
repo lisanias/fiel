@@ -174,7 +174,7 @@
 				03/2020
 			</div>
 			<div class="preencher igreja">
-				Casa de Oração para todos os povos
+				{{ Str::upper('plate engine with localization feature') }}
 			</div>
 			<div class="preencher emissao">
 				0324|100

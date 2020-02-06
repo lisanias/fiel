@@ -18,3 +18,7 @@ input {
 .card-body a.btn {
 	margin-top:1.5em;
 }
+
+.card {
+	margin-bottom: 1.5em;
+}
