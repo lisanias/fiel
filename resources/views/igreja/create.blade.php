@@ -1,1 +1,1 @@
-igreja create
+igreja create blade view
