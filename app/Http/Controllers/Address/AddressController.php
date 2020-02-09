@@ -1,5 +1,12 @@
 <?php
 
+/**
+ *  Alterar endereços de obreiros e igrejas.
+ * 
+ *  Funçoes válidas:
+ *    -> Show, Edit, Update, Destroy.
+ */
+
 namespace App\Http\Controllers\Address;
 
 use App\Address;
@@ -25,46 +32,7 @@ class AddressController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($id)
-    {
-        $member = Member::find($id);
-        $address = $member->addresses;
-        return view('address.create', compact('member', 'address'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'tipo' => 'nullable|max:20',
-            'logradouro' => 'nullable|max:100',
-            'bairro' => 'nullable|max:50',
-            'cidade' => 'required|max:50',
-            'uf' => 'required|max:2',
-            'cep' => ['nullable', 'max:9', new verificaCEP],
-        ]);
-        
-        $dataForm = $request->all();
-
-        $member = Member::find($id);
-        $address = $member->addresses()->create($dataForm);
-
-        if ($address) 
-            return redirect()->route('members.show', $member->id);
-         else
-         return redirect()->route('members.adresss.create', $member->id);
-    }
-
+    
     /**
      * Display the specified resource.
      *
@@ -85,9 +53,9 @@ class AddressController extends Controller
     public function edit($id)
     {
         $address = Address::find($id);
-        $member = $address->addressable;
+        $addresspai = $address->addressable;
 
-        return view('address.edit', compact('address', 'member'));
+        return view('address.edit', compact('address', 'addresspai'));
     }
 
     /**

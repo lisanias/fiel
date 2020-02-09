@@ -20,6 +20,6 @@ class Igreja extends Model
 
 	public function addresses()
     {
-    	return $this->morphMany('App\Address', 'addressable');
+    	return $this->morphMany(Address::class, 'addressable');
     }
 }

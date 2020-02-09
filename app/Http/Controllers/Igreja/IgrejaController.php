@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 
 class IgrejaController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,7 @@ class IgrejaController extends Controller
      */
     public function create()
     {
-        //
+        return 'Criar uma nova igreja.';
     }
 
     /**
@@ -37,7 +43,7 @@ class IgrejaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'salvar nova igreja';
     }
 
     /**
@@ -52,7 +58,8 @@ class IgrejaController extends Controller
         $igreja = Igreja::find($id);
         $members = $igreja->member;
         $pastor = $igreja->member->find($igreja->pastor_id);
-        return view('igreja.show', compact('igreja', 'members', 'pastor'));
+        $addresses = $igreja->addresses;
+        return view('igreja.show', compact('igreja', 'members', 'pastor', 'addresses'));
     }
 
     /**
@@ -63,8 +70,9 @@ class IgrejaController extends Controller
      */
     public function edit($id)
     {
-        //
-        echo 'editar igreja: ', $id; 
+        $igreja = Igreja::find($id);
+        $members = $igreja->member;
+        return view('igreja.edit', compact('igreja', 'members')); 
     }
 
     /**

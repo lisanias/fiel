@@ -27,15 +27,14 @@ Route::post('members/find', 'Member\CustomMemberController@find')->name('member.
 Route::get('members/new/step1igreja', 'Member\CustomMemberController@dadosBase')->name('member.new.step1igreja');
 
 Route::resource('address', 'Address\AddressController')->except(['index', 'create', 'store']);
-Route::resource('members.address', 'Address\AddressController')->only('create', 'store');
+Route::resource('members.address', 'Member\AddressController')->only('create', 'store');
+Route::resource('igrejas.address', 'Igreja\AddressController')->only('create', 'store');
 
 Route::resource('igrejas', 'Igreja\IgrejaController');
 Route::post('igrejas/find', 'Igreja\CustomIgrejaController@find')->name('igrejas.find');
-//Route::resource('igrejas.address', 'Address\AddressController');
 
 Route::resource('phones', 'Phone\PhoneController')->except(['index', 'create', 'store']);
 Route::resource('members.phones', 'Phone\PhoneController')->only('create', 'store');
-
 
 Route::get('imprimir', function() {
 	return view('members.id');

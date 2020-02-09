@@ -1,6 +1,12 @@
 @extends('igreja.model')
 
 @section('page-title-r')
+    @if(count($addresses) === 0 )
+        <a href="{{ route('igrejas.address.create', $igreja->id) }}" class="btn btn-sm btn-success shadow-sm">
+            <i class="fas fa-edit fa-sm text-white-50"></i>
+            {{__('Adicionar Endereço')}}
+        </a>
+    @endif
     <a href="{{ route('igrejas.edit', $igreja->id) }}" class="btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-edit fa-sm text-white-50"></i>
         {{__('Editar')}}
@@ -20,60 +26,88 @@
     <div class="card">
         <div class="card-body">
 
-            <address>
-                <h2>{{$igreja->nome}}</h2>
-                <div class='label'>
-                    <i class="far fa-envelope"></i>
-                    {{_('Endereço:')}}
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        @isset($igreja->endereco){{$igreja->endereco}}<br>@endisset
-                        @isset($igreja->bairro){{$igreja->bairro}}<br>@endisset
-                        @isset($igreja->cidade){{$igreja->cidade}}<br>@endisset
-                        @isset($igreja->estado){{$igreja->estado}}<br>@endisset
-                        @isset($igreja->cep){{$igreja->cep}}<br>@endisset
-                        @isset($igreja->pais){{$igreja->pais}}@endisset
-                    </div>
-                </div>
-                    
-                
-            </address>
             
-            <div class='label'>
-                <i class='fas fa-tag'></i>
-                {{_('Nome da Igreja para ser impresso na ID (Máximo 38 caracteres)')}}
-            </div>
-            <div class="field w75">
-                <?php
-                    $str40 = substr($igreja->nome, 0, 38);
-                ?>
-                {{ $igreja->nome_abreviado ?? $str40 }}
+            <h2>{{$igreja->nome}}</h2>
+            
+            @foreach ($addresses as $address)
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <i class="far fa-envelope text-info"></i>
+                        {{ $address->tipo ?? 'Endereco' }}
+                        <a href="{{ route('address.edit', $address->id) }}" class="card-link float-right">
+                            <i class="fas fa-edit fa-sm text-white-50"></i>
+                            {{__('Editar')}}
+                        </a>
+                    </div>
+                
+                    <div class="card-body">
+                        <address class="mb-0 mt-0">
+                            <p class="mb-0">
+                                {{ $address->logradouro }}<br>
+                                @if ($address->bairro) 	{{ $address->bairro }} <br> @endif                        
+                                @if ($address->cep) <strong>{{ $address->cep }}</strong> &mdash; @endif
+                                {{ $address->cidade }}, {{ $address->uf }}
+                            </p>
+                        </address>
+                    </div>
+
+                </div>
+
+            @endforeach
+
+            <a href="{{ route('igrejas.address.create', $igreja->id) }}" class="btn btn-success shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i>
+                {{__('Adicionar endereço')}}
+            </a>
+            
+            <div class="d-flex flex-column mt-4">
+                <div class='label'>
+                    <i class='fas fa-tag'></i>
+                    {{_('Nome abreviado')}}
+                </div>
+                <div class="field w75 form-text">
+                    <?php
+                        $str40 = substr($igreja->nome, 0, 38);
+                    ?>
+                    {{ $igreja->nome_abreviado ?? $str40 }}
+                    <small id="nome_abreviadoHelpBlock" class="form-text"><em>
+                        Nome Abreviado caso o nome normal tenha mais de 35 caracteres ou 
+                        nome da igreja como deseja que fique na ID ministerial.
+                    </em></small>
+                </div>
             </div>
 
-            <div class='label'>
-                <i class='fas fa-phone-square'></i>
-                {{_('Telefone da Igreja')}}
-            </div>
-            <div class="field w75">                
-                {{ $igreja->telefone ?? ". . ." }}
+            <div class="d-flex flex-column mt-4">
+                <div class='label'>
+                    <i class='fas fa-phone-square'></i>
+                    {{_('Telefone da Igreja')}}
+                </div>
+                <div class="field w75">                
+                    {{ $igreja->telefone ?? ". . ." }}
+                </div>
             </div>
 
-            <div class='label'>
-                <i class="fas fa-user-clock"></i>
-                {{_('Membro desde')}}
-            </div>
-            <div class="field w75">                
-                {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
+            <div class="d-flex flex-column mt-4">
+                <div class='label'>
+                    <i class="fas fa-user-clock"></i>
+                    {{_('Membro desde')}}
+                </div>
+                <div class="field w75">                
+                    {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
+                </div>
             </div>
 
             @isset($pastor)
-            <div class='label'>
-                <i class="fas fa-user-clock"></i>
-                {{_('Pastor presidente:')}}
-            </div>
-            <div class="field w75">                
-                {{ $pastor->nome }}
+            <div class="d-flex flex-column mt-4">
+                <div class='label'>
+                    <i class="fas fa-user-clock"></i>
+                    {{_('Pastor presidente:')}}
+                </div>
+                <div class="field w75">                
+                    {{ $pastor->nome }}
+                </div>
             </div>
             @endisset
 
@@ -89,11 +123,21 @@
         <h5 class="card-header">Obreiros</h5>
         <div class="card-body">           
 
-            @foreach($members as $member)
+            @if (count($members) >= 1)
 
-                <a class="link" href="{{ route('members.show', $member->id) }}"><i class="fas fa-chevron-circle-right"></i></a> {{$member->nome }} <br>
+                @foreach($members as $member)
 
-            @endforeach
+                    <a class="link" href="{{ route('members.show', $member->id) }}"><i class="fas fa-chevron-circle-right"></i></a> {{$member->nome }} <br>
+
+                @endforeach
+
+            @else
+
+                <div class="alert alert-primary mb-0" role="alert">
+                    Nenhum obreiro associado a esta igreja. Adicione ou procure por obreiros e relacione com a respectiva igreja!
+                </div>
+
+            @endif
                 
         </div>
     </div>

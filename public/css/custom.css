@@ -5,18 +5,22 @@
 	text-transform: lowercase;
 }
 input {
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 }
 
 .label {
 	font-size: 60%;
 	text-transform: uppercase;
-	color: #36b9cc!important;
-	margin-top: 1em;
+	color: #36b9cc!important;	
+}
+
+.form-group label {
+	margin-top: 0.75em;
+	margin-bottom: 0.25em;
 }
 
 .card-body a.btn {
-	margin-top:1.5em;
+	/*margin-top:1.5em;*/
 }
 
 .card {
