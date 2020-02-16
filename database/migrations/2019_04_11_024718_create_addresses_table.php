@@ -15,8 +15,9 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('member_id');
-            $table->string('tipo', 20)->default('Residencial');
+            $table->integer('addressable_id');
+            $table->string('addressable_type', 50)->default('App\\\Member');
+            $table->string('tipo', 20)->nullable();
             $table->string('logradouro', 100)->nullable();
             $table->string('bairro', 50)->nullable();
             $table->string('cidade', 50)->nullable();
@@ -25,10 +26,6 @@ class CreateAddressesTable extends Migration
             $table->boolean('confirmed')->default(1);
             $table->date('desativado')->nullable()->default(NULL);
             $table->timestamps();
-
-            $table->foreign('member_id')
-                  ->references('id')->on('members')
-                  ->onDelete('cascade');
         });
     }
 

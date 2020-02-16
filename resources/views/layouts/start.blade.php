@@ -16,6 +16,10 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -42,10 +46,16 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('icon/fiel.svg') }}" width="30" height="30" alt="">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <h1 class="text-primary d-flex flex-row">
+                    <div class="mr-3">
+                        <i class="fab fa-black-tie"></i>
+                    </div>
+                    <div>
+                        <strong>Fiel</strong><small><sup>2</sup></small>
+                    </div>                    
+                </h1>
+                
+               
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,7 +109,7 @@
         <footer class="footer mt-auto py-3">
             <div class="container">
                 <span class="text-muted">
-                    <small class="d-block mb-3 text-muted">WEBIG &copy; 2014-2019</small>
+                    <small class="d-block mb-3 text-muted">WEBIG &copy; 2014-2020</small>
                 </span>
             </div>
         </footer>

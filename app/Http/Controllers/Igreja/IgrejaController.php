@@ -32,7 +32,7 @@ class IgrejaController extends Controller
      */
     public function create()
     {
-        return 'Criar uma nova igreja.';
+        return view('igreja.create');
     }
 
     /**
@@ -43,7 +43,19 @@ class IgrejaController extends Controller
      */
     public function store(Request $request)
     {
-        return 'salvar nova igreja';
+        $validatedData = $request->validate([
+            'nome' => 'required|max:100|string',
+            'nome_abreviado' => 'nullable|max:35',
+            'email' => 'nullable|email|max:191',
+            'membro_desde' => 'nullable|date',
+            'telefone' => 'nullable|max:19',
+        ]);
+
+        $dataForm = $request->all();
+        $igreja = Igreja::create($dataForm);
+        
+        //return 'id inserido = '. $igreja->id;
+        return redirect(route('igrejas.address.create', $igreja->id));
     }
 
     /**
@@ -71,7 +83,7 @@ class IgrejaController extends Controller
     public function edit($id)
     {
         $igreja = Igreja::find($id);
-        $members = $igreja->member;
+        $members = $igreja->member->pluck('nome', 'id');
         return view('igreja.edit', compact('igreja', 'members')); 
     }
 
@@ -84,7 +96,24 @@ class IgrejaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nome' => 'required|max:100|string',
+            'nome_abreviado' => 'nullable|max:35',
+            'email' => 'nullable|email|max:191',
+            'membro_desde' => 'nullable|date',
+            'telefone' => 'nullable|max:19',
+        ]);
+
+         // Pega os dados do formulário
+         $dataForm = $request->all();
+
+         // Busca o membro pelo id
+         $igreja = Igreja::find($id);
+ 
+         // Atualiza a base de dados
+         $update = $igreja->update($dataForm);
+
+        return redirect()->route('igrejas.show', $id);
     }
 
     /**

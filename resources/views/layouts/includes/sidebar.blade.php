@@ -1,13 +1,13 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
         <div class="sidebar-brand-icon">
           <i class="fab fa-black-tie"></i>
         </div>
         <div class="sidebar-brand-text mx-3">
-                    {{ config('app.name', 'Laravel') }}
-        <sup>2</sup></div>
+          {{ config('app.name', 'Fiel') }}<sup>2</sup>
+        </div>
       </a>
 
       <!-- Divider -->
@@ -53,7 +53,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('Administrar')}}</h6>
             <a class="collapse-item {{ Request::is('members') ? 'active' : null}}" href="{{ route('members.index') }}">{{__('List')}}</a>
-            <a class="collapse-item" href="{{ route('members.create') }}">{{__('Add')}}</a>
+            <a class="collapse-item {{ Request::is('members/create') ? 'active' : null}}" href="{{ route('members.create') }}">{{__('Add')}}</a>
+            <a class="collapse-item {{ Request::is('members/aniversariantes') ? 'active' : null}}" href="{{ route('members.niver') }}">{{__('Aniversariantes')}}</a>
           </div>         
         </div>
       </li>
@@ -83,9 +84,7 @@
         <div id="collapseRegional" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('Igrejas')}}</h6>
-            <a class="collapse-item" href="#">{{__('Listar')}}</a>
-            <a class="collapse-item" href="#">{{__('Vencidas')}}</a>
-            <a class="collapse-item" href="{{ route('imprimir') }}">{{__('iMPRIMIR')}}</a>           
+            <a class="collapse-item" href="#">{{__('Listar')}}</a>           
           </div>
         </div>
       </li>

@@ -127,6 +127,8 @@ function formatar(mascara, documento){
 	</div>
 	@endif
 	@endif
+	
+	@if(isset($igrejas))
 	<!-- Igreja  -->
 	<!-- Colocar lista de igrejas da tabela -->
 	<div class="form-group">
@@ -141,6 +143,7 @@ function formatar(mascara, documento){
 		    <div class="invalid-feedback">{{ $message }}</div>
 		@enderror
 	</div>
+	@endif
 
 	<!-- Data de Filiação-->
 	<div class="form-group">

@@ -32,7 +32,7 @@
 			@endisset
 
 			<div class="card-body">				
-				<a href="{{ route('igrejas.create', $nome) }}" class="btn btn-success btn-lg btn-block">Adicionar {{ strtoupper($nome) }}?</a>
+				<a href="{{ route('igrejas.create') }}" class="btn btn-success btn-lg btn-block">Adicionar {{ strtoupper($nome) }}?</a>
 			</div>
 				
 		</div>

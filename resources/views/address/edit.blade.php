@@ -3,7 +3,7 @@
 @section('form')
 
 	<div class="card-header">
-		{{__('Alterar endereço de ')}} {{ $addresspai->nome }} - {{$address->addressable_type}} - {{$address->getTable()}}
+		{{__('Alterar endereço de ')}} {{ $addresspai->nome }}
 		<span class="badge badge-info float-right">ID {{ str_pad($address->id, 5, "0", STR_PAD_LEFT) }}</span>
 	</div>
 

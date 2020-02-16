@@ -53,7 +53,7 @@
 		}
 		.numero {			
 			left: 90mm;
-  			top: 25mm;
+  			top: 26mm;
   			width: 10mm;
   			text-align: right;  			
 		}
@@ -174,7 +174,7 @@
 				03/2020
 			</div>
 			<div class="preencher igreja">
-				{{ Str::upper('plate engine with localization feature') }}
+				{{ Str::upper('Casa Oração Para Todos os Povos') }}
 			</div>
 			<div class="preencher emissao">
 				0324|100

@@ -1,4 +1,4 @@
-@extends('members.memberModel')
+@extends('members.models.model')
 
 @section('title', __('Obreiros')) 
 

@@ -1,4 +1,4 @@
-@extends('members.memberModel')
+@extends('members.models.model')
 
 @section('page-title', __('Inserir novo obreiro')) 
 

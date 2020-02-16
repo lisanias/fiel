@@ -5,7 +5,7 @@
 @section('page-title', "Usuários do sistema") 
 
 @section('page-title-r')
-    <a href="{{ route('user.index')}}" class="btn btn-sm btn-success shadow-sm" title="{{__('List Users')}}">
+    <a href="{{ route('user.index')}}" class="btn btn-sm btn-info shadow-sm" title="{{__('List Users')}}">
     	<i class="fas fa-list-ul fa-sm text-white-50 pr-1"></i> 
     	<span class="d-none d-lg-inline-block">{{__('List Users')}}</span>
     </a>
@@ -32,12 +32,12 @@
 
 
 	<div class="col-md-12">
-		<div class="card border-left-primary shadow h-100 mb-4 h-md-250">
+		<div class="card border-left-primary shadow mb-4 h-md-250">
             <div class="card-header">{{__('Profile')}}</div>
 			<div class="card-body">
 				
 				<div class="text-center">
-				  	<img class="rounded-circle img-fluid shadow border border-ligth img-thumbnail" src="{{ asset('user-images') }}/{{ isset($user->avatar) ? Auth::user()->avatar : 'user.png' }}" width="150px">
+				  	<img class="rounded-circle img-fluid shadow border border-ligth img-thumbnail" src="{{ asset('user-images') }}/{{ isset($user->avatar) ? $user->avatar : 'user.png' }}" width="150px">
 				
 					<h1 class="py-4">{{$user->name}}</h1>
 				</div>

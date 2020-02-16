@@ -1,16 +1,6 @@
 @extends('igreja.model')
 
 @section('page-title-r')
-    @if(count($addresses) === 0 )
-        <a href="{{ route('igrejas.address.create', $igreja->id) }}" class="btn btn-sm btn-success shadow-sm">
-            <i class="fas fa-edit fa-sm text-white-50"></i>
-            {{__('Adicionar Endereço')}}
-        </a>
-    @endif
-    <a href="{{ route('igrejas.edit', $igreja->id) }}" class="btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-edit fa-sm text-white-50"></i>
-        {{__('Editar')}}
-    </a>
     <a href="{{ route('igrejas.index') }}" class="btn btn-sm btn-info shadow-sm">
         <i class="fas fa-list fa-sm text-white-50"></i>
         {{__('Listar')}}
@@ -25,10 +15,9 @@
 
     <div class="card">
         <div class="card-body">
-
             
             <h2>{{$igreja->nome}}</h2>
-            
+                        
             @foreach ($addresses as $address)
 
                 <div class="card">
@@ -61,62 +50,84 @@
                 <i class="fas fa-plus fa-sm text-white-50"></i>
                 {{__('Adicionar endereço')}}
             </a>
+
+            <div class="card shadow mt-4">
+                <div class="card-body">
+                
+                    <div class="d-flex flex-column">
+                        <div class='label'>
+                            <i class='fas fa-tag'></i>
+                            {{_('Nome abreviado')}}
+                        </div>
+                        <div class="field w75 form-text mt-0">
+                            <?php
+                                $str40 = substr($igreja->nome, 0, 38);
+                            ?>
+                            {{ $igreja->nome_abreviado ?? $str40 }}
+                            <small id="nome_abreviadoHelpBlock" class="form-text text-gray-500 mt-0"><em>
+                                Nome Abreviado caso o nome normal tenha mais de 35 caracteres ou 
+                                nome da igreja como deseja que fique na ID ministerial.
+                            </em></small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class='fas fa-at'></i>
+                            {{_('E-mail')}}
+                        </div>
+                        <div class="field w75">                
+                            {{ $igreja->email ?? ". . ." }}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class='fas fa-phone-square'></i>
+                            {{_('Telefone da Igreja')}}
+                        </div>
+                        <div class="field w75">                
+                            {{ $igreja->telefone ?? ". . ." }}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class="fas fa-user-clock"></i>
+                            {{_('Membro desde')}}
+                        </div>
+                        <div class="field w75">                
+                            {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
+                        </div>
+                    </div>
+
+                    @isset($pastor)
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class="fas fa-user-clock"></i>
+                            {{_('Pastor presidente:')}}
+                        </div>
+                        <div class="field w75">                
+                            {{ $pastor->nome }}
+                        </div>
+                    </div>
+                    @endisset
+
+                    <a href="{{ route('igrejas.edit', $igreja->id) }}" class="btn btn-sm btn-primary shadow-sm mt-3">
+                        <i class="fas fa-edit fa-sm text-white-50"></i>
+                        {{__('Editar')}}
+                    </a>
+                      
+                    
+                </div>
+            </div>
             
-            <div class="d-flex flex-column mt-4">
-                <div class='label'>
-                    <i class='fas fa-tag'></i>
-                    {{_('Nome abreviado')}}
-                </div>
-                <div class="field w75 form-text">
-                    <?php
-                        $str40 = substr($igreja->nome, 0, 38);
-                    ?>
-                    {{ $igreja->nome_abreviado ?? $str40 }}
-                    <small id="nome_abreviadoHelpBlock" class="form-text"><em>
-                        Nome Abreviado caso o nome normal tenha mais de 35 caracteres ou 
-                        nome da igreja como deseja que fique na ID ministerial.
-                    </em></small>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column mt-4">
-                <div class='label'>
-                    <i class='fas fa-phone-square'></i>
-                    {{_('Telefone da Igreja')}}
-                </div>
-                <div class="field w75">                
-                    {{ $igreja->telefone ?? ". . ." }}
-                </div>
-            </div>
-
-            <div class="d-flex flex-column mt-4">
-                <div class='label'>
-                    <i class="fas fa-user-clock"></i>
-                    {{_('Membro desde')}}
-                </div>
-                <div class="field w75">                
-                    {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
-                </div>
-            </div>
-
-            @isset($pastor)
-            <div class="d-flex flex-column mt-4">
-                <div class='label'>
-                    <i class="fas fa-user-clock"></i>
-                    {{_('Pastor presidente:')}}
-                </div>
-                <div class="field w75">                
-                    {{ $pastor->nome }}
-                </div>
-            </div>
-            @endisset
-
-            
-
         </div>
         <div class="card-footer text-muted">
-            <p class="small text-right">Ficha criada em <strong>{{ $igreja->created_at->format('d-m-Y [H:m]') }}</strong> e atualizada pela ultima vez em <strong>{{ $igreja->updated_at->format('d-m-Y [H:m]') }}</strong></p>
+            <p class="fs-50 text-right mb-0">Ficha criada em <strong>{{ $igreja->created_at->format('d-m-Y [H:m]') }}</strong> e atualizada pela ultima vez em <strong>{{ $igreja->updated_at->format('d-m-Y [H:m]') }}</strong></p>
         </div>
+
+
     </div>    
 
     <div class="card">

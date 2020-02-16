@@ -26,3 +26,7 @@ input {
 .card {
 	margin-bottom: 1.5em;
 }
+
+.fs-50 {
+	font-size: 70%;
+}

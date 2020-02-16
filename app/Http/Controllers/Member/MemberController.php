@@ -33,10 +33,11 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //$igrejas = Igreja::orderBy('name', 'ASC', SORT_REGULAR, true)->get()->pluck('NameCidade', 'id');
-        //$membros = Member::get();
-        
-        //return view('members.create', compact('igrejas'));
+        /**
+         * Antes de criar um novo membro, envia para o formulário de pesquisa
+         * para saber se o existe um membro com o mesmo nome
+         */
+
         return view('members.find');
     }
 
@@ -56,8 +57,7 @@ class MemberController extends Controller
             'dnas' => 'nullable|date',
             'naturalde' => 'nullable|max:100',
             'rg' => 'required|max:30',
-            'cpf' => ['required', 'max:14', new verificaCPF],
-            'igreja_id' => 'required|max:191|string',
+            'cpf' => ['nullable', 'max:14', new verificaCPF],
             'data_filiacao' => 'nullable|date',
             'data_ordenacao' => 'required|date',
         ]);
@@ -66,7 +66,8 @@ class MemberController extends Controller
         $dataForm = $request->all();
         $member = Member::create($dataForm);
         
-        return "Adicionar {{$dataForm}}";
+        //return "Adicionar ". $member->id;
+        return redirect(route('members.address.create', $member->id));
         //return redirect()->route('members.show', $member->id);
     }
 
@@ -97,6 +98,8 @@ class MemberController extends Controller
     {
         $member = Member::find($id);
         $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
+        
+        //dd($igrejas);
         return view('members.edit', compact('member', 'igrejas'));
     }
 
@@ -117,7 +120,7 @@ class MemberController extends Controller
             'dnas' => 'nullable|date',
             'naturalde' => 'nullable|max:100',
             'rg' => 'required|max:30',
-            'cpf' => ['required', 'max:14', new verificaCPF],
+            'cpf' => ['nullable', 'max:14', new verificaCPF],
             'igreja_id' => 'required|max:191|string',
             'data_filiacao' => 'nullable|date',
             'data_ordenacao' => 'required|date',

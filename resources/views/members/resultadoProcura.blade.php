@@ -1,4 +1,4 @@
-@extends('members.memberModel')
+@extends('members.models.model')
 
 @section('title', __('Obreiros')) 
 
@@ -19,6 +19,6 @@
 		@endisset
 
 		<div class="card-body">				
-			<a href="{{ route('member.new.step1igreja', $nome) }}" class="btn btn-success btn-lg btn-block">Adicionar {{ strtoupper($nome) }}?</a>
+			<a href="{{ route('member.new') }}" class="btn btn-success btn-lg btn-block">Adicionar {{ strtoupper($nome) }}?</a>
 		</div>
 @endsection

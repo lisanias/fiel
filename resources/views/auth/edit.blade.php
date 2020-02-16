@@ -16,7 +16,7 @@
 @section('content')
 
 <div class="col-md-12">
-	<div class="card border-left-primary shadow h-100 mb-4 h-md-250">
+	<div class="card border-left-primary shadow mb-4 ">
 		<div class="card-header">{{__('User Profile')}}</div>
 		<div class="card-body">
 
@@ -59,7 +59,7 @@
 </div>
 
 <div class="col-md-12 pt-5">
-	<div class="card border-left-primary shadow h-100 mb-4 h-md-250">
+	<div class="card border-left-primary shadow mb-4 h-md-250">
 		<div class="card-header">{{__('New Password')}}</div>
 		<div class="card-body">
 

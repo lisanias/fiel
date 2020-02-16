@@ -1,4 +1,4 @@
-@extends('members.membersForm')
+@extends('members.models.form')
 
 
 @section('form')	
@@ -9,7 +9,7 @@
 
 				{!! Form::open(['route' => 'members.store']) !!}
 
-				@include ("members._form", ['btn_texto' => 'Próximo', 'btn_icon' => 'fas fa-arrow-circle-right'])
+				@include ("members.includes.form", ['btn_texto' => 'Próximo', 'btn_icon' => 'fas fa-arrow-circle-right'])
 
 				{!! Form::close() !!}
 

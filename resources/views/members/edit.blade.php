@@ -1,4 +1,4 @@
-@extends('members.membersForm')
+@extends('members.models.form')
 
 
 @section('form')	
@@ -15,7 +15,7 @@
 				
 				{!! Form::model($member, ['method' => 'PATCH', 'url' => 'members/'.$member->id]) !!}
 
-				@include ("members._form", ['btn_texto' => 'Salvar alteração'])
+				@include ("members.includes.form", ['btn_texto' => 'Salvar alteração'])
 
 				{!! Form::close() !!}					
 

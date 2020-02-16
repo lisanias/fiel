@@ -5,12 +5,28 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Igreja;
 use App\Member;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class CustomMemberController extends Controller
 {
+	private $mesPT = [
+		'1'=>'Janeiro', 
+		'2'=>'Fevereiro', 
+		'3'=>'Março', 
+		'4'=>'Abril', 
+		'5'=>'Maio', 
+		'6'=>'Junho', 
+		'7'=>'Julho',
+		'8'=>'Agosto',
+		'9'=>'Setembro',
+		'10'=>'Outubro',
+		'11'=>'Novembro',
+		'12'=>'Dezembro',
+	];
+
 	public function __construct()
     {
         $this->middleware('auth');
@@ -47,11 +63,36 @@ class CustomMemberController extends Controller
         return view('members.resultadoProcura', compact('members', 'nome'));
     }
 
-    public function dadosBase(Request $request) 
+	/**
+	 * Função para criar novo usuário. 
+	 * A função create (MemberController@create) redireciona 
+	 * para a página de procura para evitar usuários duplicados. 
+	 * 
+	 * Esta função mostra o formulario para criar usuários. 
+	 */
+	public function new(Request $request) 
     {		
-		//$igrejas = Igreja::orderBy('nome', 'ASC', SORT_REGULAR, true)->get()->pluck('NomeCidade', 'id');
-		//$igrejas = Igreja::orderBy('nome', 'ASC', SORT_REGULAR, true)->get();		
-    	// return view('igreja.index', compact('igrejas'));
-    	return redirect(route('igrejas.index'));
+		$igrejas = Igreja::get()->pluck('NomeCidade', 'id');
+		
+		return view('members.create', compact('igrejas'));
+		
+		/*
+		 * Modelo de return passando dados:
+		 * 
+		return redirect()
+                ->route( 'members.show', $member->id )
+				->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
+		*/
+	}
+	
+	public function aniversariantes($mes = null)
+    {
+		if(!$mes || $mes < 1 || $mes > 12){
+			$mes = Carbon::today()->month;
+		}
+		$aniversariantes = Member::MonthBirthdays($mes)->get();
+		$mesPT = $this->mesPT;
+		
+        return view('members.niver', compact('aniversariantes', 'mesPT', 'mes'));
     }
 }
