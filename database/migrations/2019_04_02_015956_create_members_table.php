@@ -29,6 +29,7 @@ class CreateMembersTable extends Migration
             $table->date('data_ordenacao')->nullable();
             $table->text('obs')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -154,6 +154,17 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        return "apagar id: {{$id}}";
+        $deletedRows = Member::destroy($id);
+        //dd($deletedRows);
+        
+        // retorna para pagina do membro ou continue em edit se deu algo errado
+        if( $deletedRows )
+            return redirect()
+                ->route('members.index')
+                ->with(['alert'=>'Arquivo Apagado!', 'alert_type'=>'success']);
+        else
+            return redirect()
+                ->route('members.show', $id )
+                ->with(['alert'=>'O arquivo não foi apagado!', 'alert_type'=>'danger']);
     }
 }

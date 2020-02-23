@@ -16,7 +16,7 @@
 
 	<div class="col-md-12">
 		<div class="card shadow mb-4  border-left-primary">
-            <div class="card-header">{{__('Lista de obreiros')}}</div>
+            <div class="card-header"><h2 class="text-primary">{{__('Lista de obreiros')}}</h2></div>
             <div class="card-body">
 
 				<table class="table table-hover table-borderless" style='line-height: 1.2;'>

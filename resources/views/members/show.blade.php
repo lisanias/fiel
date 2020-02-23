@@ -131,11 +131,22 @@
 							</div>
 						</div>
 
-						<a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary shadow-sm">
-							<i class="fas fa-edit fa-sm text-white-50"></i>
-							{{__('Editar')}}
-						</a>					
+						<div class='d-flex flex-row'>
 
+							<a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary shadow-sm">
+								<i class="fas fa-edit fa-sm text-white-50"></i>
+								{{__('Editar')}}
+							</a>							
+
+							<div class="ml-1">
+								<form id='apagar' method="post" action="{!! route('members.destroy', $member->id) !!}"> 
+									{!! Form::token() !!}
+									<input type="hidden" name="_method" value="DELETE">
+									<button type="submit" class='btn btn-danger'><i class="fas fa-trash-alt"></i></button>
+								</form>
+							</div>
+
+						</div>
 					</div>
 
 				</div>
@@ -168,10 +179,14 @@
 							</address>
 						@endforeach
 
-						<a href="{{ route('members.address.create', $member->id) }}" class="btn btn-success shadow-sm">
-							<i class="fas fa-plus fa-sm text-white-50"></i>
-							{{__('Adicionar')}}
-						</a>
+						<div>
+
+							<a href="{{ route('members.address.create', $member->id) }}" class="btn btn-success shadow-sm">
+								<i class="fas fa-plus fa-sm text-white-50"></i>
+								{{__('Adicionar')}}
+							</a>
+
+						</div>
 
 					</div>
 				</div>

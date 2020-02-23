@@ -7,8 +7,6 @@ use App\Igreja;
 use App\Member;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Session;
 
 class CustomMemberController extends Controller
 {
@@ -30,7 +28,31 @@ class CustomMemberController extends Controller
 	public function __construct()
     {
         $this->middleware('auth');
-    }
+	}
+	
+	/**
+	 * Listar membros apagados
+	 */
+	public function indexDeleted()
+    {
+        $members = Member::onlyTrashed()->orderBy('nome', 'ASC', SORT_REGULAR, true)->paginate(10);
+        return view('members.indexDeleted', compact('members'));
+	}
+	
+	/**
+	 * Restaurar membros apagados
+	 */
+	public function restore($id)
+    {
+		$member = Member::onlyTrashed()
+			->find($id);
+		$member->restore();
+
+		//dd($member);
+		return redirect()->action('Member\MemberController@show', $id);
+	}
+	
+
 	
 	public function find(Request $request)
     {

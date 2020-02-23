@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6"
+        "laravelcollective/html": "^6",
+        "mpdf/mpdf": "^8.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

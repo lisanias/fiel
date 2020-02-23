@@ -4,10 +4,13 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Member extends Model
 {
-    protected $dates = ['created_at', 'updated_at', 'dnas', 'data_filiacao', 'data_ordenacao'];
+    use SoftDeletes;
+    
+    protected $dates = ['created_at', 'updated_at', 'dnas', 'data_filiacao', 'data_ordenacao', 'deleted_at'];
 
     protected $fillable = [
         'titulo', 'nome', 'nome_abreviado', 'email', 'dnas', 'naturalde', 'rg', 'cpf', 'igreja', 'igreja_id', 'data_filiacao', 'data_ordenacao', 'obs',

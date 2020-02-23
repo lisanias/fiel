@@ -55,6 +55,7 @@
             <a class="collapse-item {{ Request::is('members') ? 'active' : null}}" href="{{ route('members.index') }}">{{__('List')}}</a>
             <a class="collapse-item {{ Request::is('members/create') ? 'active' : null}}" href="{{ route('members.create') }}">{{__('Add')}}</a>
             <a class="collapse-item {{ Request::is('members/aniversariantes') ? 'active' : null}}" href="{{ route('members.niver') }}">{{__('Aniversariantes')}}</a>
+            <a class="collapse-item {{ Request::is('members/deleted') ? 'active' : null}}" href="{{ route('members.deleted') }}">{{__('Apagados')}}</a>
           </div>         
         </div>
       </li>
