@@ -47,4 +47,15 @@ class Member extends Model
             
         }
 
+        public function scopeMonthBirthdaysName($query, $mes=null)
+        {
+            if(!$mes || $mes < 1 || $mes > 12){
+                $mes = Carbon::today()->month;
+            }
+            return $query
+                ->whereRaw('extract(month from dnas) = ?', [$mes])
+                ->orderByRaw ('nome', 'asc');
+            
+        }
+
 }

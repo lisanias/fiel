@@ -26,6 +26,7 @@ Route::post('admin/user/passwor/{id}/update', 'User\AdminUserController@updatePa
 
 /** Membros (Members) */
 Route::get(     'members/aniversariantes/{mes?}',  'Member\CustomMemberController@aniversariantes')->name('members.niver');
+Route::get(     'members/aniversariantes/{mes}/etiquetas',  'Member\CustomMemberController@etiquetasAniversariantes')->name('members.niver.etiquetas');
 Route::get(     'members/deleted',  'Member\CustomMemberController@indexDeleted')->name('members.deleted');
 Route::get(     'members/deleted/{id}',  'Member\CustomMemberController@restore')->name('members.restore');
 Route::post(    'members/find', 'Member\CustomMemberController@find')->name('member.find');

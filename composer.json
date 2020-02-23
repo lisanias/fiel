@@ -9,11 +9,11 @@
     "license": "MIT",
     "require": {
         "php": "^7",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6",
-        "mpdf/mpdf": "^8.0"
+        "laravelcollective/html": "^6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

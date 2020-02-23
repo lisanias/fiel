@@ -7,6 +7,7 @@ use App\Igreja;
 use App\Member;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class CustomMemberController extends Controller
 {
@@ -116,5 +117,29 @@ class CustomMemberController extends Controller
 		$mesPT = $this->mesPT;
 		
         return view('members.niver', compact('aniversariantes', 'mesPT', 'mes'));
-    }
+	}
+	
+	public function etiquetasAniversariantes($mes = null)
+	{
+		// verificar se não foi definido um mes e se o mes esta entre Janeiro (1) e Dezembro (12)
+		if(!$mes || $mes < 1 || $mes > 12){
+			$mes = Carbon::today()->month;
+		}
+
+		// pegar os aniveriantes do referido mes
+		$aniversariantes = Member::MonthBirthdaysName($mes)->get();
+
+		// passar os dados de formatação da etiqueta (Letter com 20 etiquetas)
+		$identacaoTop=3;
+        $identacaoLeft=10;
+        $top = [12.7, 38.1, 63.5, 88.9, 114.2, 139.7, 165.1, 190.5, 215.9, 241.3];
+        $left = [4, 110.3];
+		
+		// Criar o arquivo pdf 
+        $pdf = PDF::loadView('print.labelPDF20', compact('aniversariantes', 'top', 'left', 'identacaoTop', 'identacaoLeft' ))
+            ->setPaper('letter','portrait');
+
+		// Exibir o arquivo PDF na tela para imprimir as etiquetas
+		return $pdf->stream('etiqueta.pdf');
+	}
 }

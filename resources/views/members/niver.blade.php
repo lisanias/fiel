@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="card-footer text-muted">
-		<a href="#" class="btn btn-primary">Imprimir etiquetas</a>
+	<a href="{{route('members.niver.etiquetas', $mes)}}" class="btn btn-primary" target="_BLANK">Imprimir etiquetas</a>
 	</div>			
 			
 @endsection

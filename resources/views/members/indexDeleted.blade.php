@@ -31,7 +31,7 @@
 							<div class="ml-auto align-self-center">
 								<a class="btn btn-warning" href="{{ route('members.restore', $member->id) }}">
 									<i class="fas fa-trash-restore"></i> 
-									<span class="small ml-1">{{__('Restaurar')}}</span>
+									<span class="d-none d-md-inline-block small ml-1">{{__('Restaurar')}}</span>
 								</a>
 							</div>	
 						</div>
