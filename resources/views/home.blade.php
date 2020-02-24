@@ -73,8 +73,11 @@
 
         </div>
 
-        <div class="card shadow mb-4">
-        <div class="card-header">Aniversariantes - {{count($nivers)}}</div>
+        <div class="card shadow mb-4  border-success">
+            <div class="card-header text-white bg-success">
+                Aniversariantes do Mês {{__( Carbon\Carbon::now()->format('F') )}}
+                <span class="badge badge-light">{{count($nivers)}}</span>
+            </div>
 
             <div class="card-body">
                 
