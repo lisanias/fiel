@@ -22,7 +22,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::orderBy('nome', 'ASC', SORT_REGULAR, true)->paginate(20);
+        $members = Member::orderBy('nome', 'desc', SORT_REGULAR, true)->paginate(20);
         return view('members.index', compact('members'));
     }
 
@@ -80,12 +80,17 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = Member::find($id);
-        $phones = $member->phones('Phone')->get();
+        if(!$member){
+            return redirect()
+                ->route('members.index')
+                ->with(['alert'=>'Obreiro não encontrado. Talvez ele tenha sido apagado!', 'alert_type'=>'warning']);
+        }
+        $phones = $member->phones;
         $addresses = $member->addresses;
+        $identidades = $member->identidades;
         $igreja = $member->igreja('Igreja')->first();
-        //dd($addresses->id);
-        //die();
-        return view('members.show', compact('member', 'phones', 'addresses', 'igreja'));
+        
+        return view('members.show', compact('member', 'phones', 'addresses', 'igreja', 'identidades'));
     }
 
     /**

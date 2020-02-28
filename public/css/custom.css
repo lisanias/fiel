@@ -30,3 +30,7 @@ input {
 .fs-50 {
 	font-size: 70%;
 }
+
+#chbl {
+	border-radius: 0 calc(.35rem - 1px) 0 0;
+}

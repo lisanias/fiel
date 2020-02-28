@@ -235,6 +235,52 @@
 			
 		</div>
 
+		<div class="row">
+			<div class="col col-lg-12 col-md-12">
+					
+				<div class="card shadow">
+					<div class="card-header">
+						<i class="fas fa-id-card"></i> 
+					Identificação Ministerial de {{ $member->nome }}
+					</div>
+					<div class="card-body">
+						
+						<table class="table table-borderless table-hover mb-0" style="line-height: 1.2;">
+				
+							<tbody>
+							@foreach($identidades as $identidade)
+							<tr>
+								<td style='vertical-align: middle;'>
+									<small>{{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}<br></small>
+									<strong class="text-success">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>
+								</td>
+								<td style='vertical-align: middle;'>
+									<h5 class="mb-0">{{Str::upper($identidade->nome)}}</h5>				
+								</td>
+								<td style='vertical-align: middle;'>
+									<small class="text-success">Validade:</small><br> 									
+									{{$identidade->validade->format('m/Y')}}
+								</td>
+								<td style='vertical-align: middle;'>
+									<small class="text-success">Criado em:</small><br> 
+									{{ $identidade->created_at->format('d/m/Y') }}
+								</td>
+								<td style='vertical-align: middle;'>
+									<a class="link" href="{{ route('identidades.show', $identidade->id) }}">
+										<i class="fas fa-chevron-right"></i>
+									</a>
+								</td>
+							</tr>
+							@endforeach
+							
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 			
 

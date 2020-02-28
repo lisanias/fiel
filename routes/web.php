@@ -51,5 +51,5 @@ Route::get('imprimir', function() {
 	return view('members.id');
 })->name('imprimir');
 
-/** Aniversariantes */
-
+/** Identidades */
+Route::resource('identidades',      'Identidade\identidadeController');

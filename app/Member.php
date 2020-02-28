@@ -35,6 +35,10 @@ class Member extends Model
         return $this->belongsTo('App\Igreja');
     }
 
+    public function identidades()
+	{
+		return $this->hasMany('App\Identidade');
+	}
 
     public function scopeMonthBirthdays($query, $mes=null)
         {

@@ -18,21 +18,18 @@ class CreateIdentidadesTable extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('member_id');
-            $table->dateTime('data')->nullable()->default(null);
-            $table->string('validade', 15)->nullable()->default(null);
+            $table->date('validade')->nullable();
             $table->string('cargo')->nullable()->default(null);
             $table->string('nome')->nullable()->default(null);
             $table->string('rg')->nullable()->default(null);
             $table->string('igreja')->nullable()->default(null);
             $table->dateTime('dataOrdenacao')->nullable()->default(null);
-            $table->string('arquivo', 25)->nullable()->default(null);
             $table->longText('obs')->nullable()->default(null);
             
             $table->timestamps();
 
             $table->index(["id"], 'id');
             $table->index(["member_id"], 'member_id');
-
         });
     }
 
