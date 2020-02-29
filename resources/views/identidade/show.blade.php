@@ -168,7 +168,7 @@
         
         </div>
         <div class="card-body ml-3">
-            <h3>{{Str::upper($member->nome)}}</h3>
+            <h3>{{Str::upper($member->nome ?? $identidade->nome)}}</h3>
             <p>
                 {{str_pad($identidade->id, 6, "0", STR_PAD_LEFT)}}
                 {{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}
@@ -177,20 +177,27 @@
             </p>
             <div class="jumbotron">
                 <table class="">
-                    <tr><td class="t-a-r">Nome Completo</td><td>{{Str::upper($member->nome)}}</td></tr>
+                    <tr><td class="t-a-r">Nome Completo</td><td @if(!$member) class="badge badge-danger"@endif>{{$member->nome ?? 'Não consta no Cadastro de Obreiro' }}</td></tr>
                     <tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper($identidade->nome)}}</strong></td></tr>
                     <tr><td class="t-a-r">Titulo</td><td><strong>{{$identidade->cargo}}</strong></td></tr>
                     <tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->dataOrdenacao->format('d/m/Y')}}</td></tr>
                     <tr><td class="t-a-r">Identidade</td><td>{{$identidade->rg}}</td></tr>
                     <tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
                     <tr><td class="t-a-r">Igreja (Impresso)</td><td>{{ Str::upper($identidade->igreja) }}</td></tr>
-                    <tr><td class="t-a-r">Igreja (Razao Social)</td><td>{{ Str::upper($igreja->nome) }}</td></tr>
-                    <tr><td class="t-a-r">Igreja (Nome Obreviado)</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
+                    @if ($igreja)                        
+                        <tr><td class="t-a-r">Igreja (Razao Social)</td><td>{{ Str::upper($igreja->nome) ?? '' }}</td></tr>
+                        <tr><td class="t-a-r">Igreja (Nome Obreviado)</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
+                    @endif
                 </table>
             </div>
             <div>
-                <a class="btn btn-info" href="{{route('members.show', $identidade->member_id)}}"><i class="far fa-user mr-2"></i>Membro</a>
-                <a class="btn btn-info" href="{{route('igrejas.show', $igreja->id)}}"><i class="far fa-user mr-2"></i>Igreja</a>
+                @if($member)
+                    <a class="btn btn-info" href="{{route('members.show', $identidade->member_id)}}"><i class="far fa-user mr-2"></i>Membro</a>
+                @endif
+                @if ($igreja)
+                    <a class="btn btn-info" href="{{route('igrejas.show', $igreja->id)}}"><i class="fas fa-church mr-2"></i>Igreja</a>
+                @endif
+                <a class="btn btn-info" href="{{route('identidades.index')}}"><i class="fas fa-list mr-2"></i>Listar</a>
             </div>
         </div>
 		<div class="card-footer text-muted">

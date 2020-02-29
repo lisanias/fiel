@@ -1,18 +1,11 @@
 @extends('identidade.models.model')
 
-@section('page-title-r')
-    <a href="{{ route('igrejas.create') }}" class="btn btn-sm btn-success shadow-sm">
-    	<i class="fas fa-user-plus fa-sm text-white-50"></i>
-    	<span class="d-none d-md-inline-block">{{__('Adicionar')}}</span>
-    </a>
-@endsection
-
 @section('card')
 
 
 	
 		<div class="card-header text-white bg-success" id="chbl">
-            <h3 class="mb-0">{{__('Últimas Identidades Ministeriais emitidas')}}</h3>
+            <h3 class="mb-0">{{__($listTitle??'Identidades Ministeriais...')}}</h3>
         </div>
 		<div class="card-body">
 

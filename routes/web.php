@@ -52,4 +52,5 @@ Route::get('imprimir', function() {
 })->name('imprimir');
 
 /** Identidades */
+Route::get('identidades/vencidas', 'Identidade\IdentidadeController@vencidas')->name('vencidas');
 Route::resource('identidades',      'Identidade\identidadeController');

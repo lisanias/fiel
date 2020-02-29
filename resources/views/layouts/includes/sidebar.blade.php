@@ -100,7 +100,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('Igrejas')}}</h6>
             <a class="collapse-item" href="{{ route('identidades.index')}}">{{__('Listar')}}</a>
-            <a class="collapse-item" href="#">{{__('Vencidas')}}</a>
+            <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Vencidas')}}</a>
             <a class="collapse-item" href="{{ route('imprimir') }}">{{__('iMPRIMIR')}}</a>           
           </div>
         </div>
