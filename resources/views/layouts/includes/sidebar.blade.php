@@ -76,20 +76,6 @@
         </div>
       </li>
 
-      <!-- REGIONAIS - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegional" aria-expanded="true" aria-controls="collapseRegional">
-          <i class="fas fa-fw fa-map-marked-alt"></i>
-          <span>{{__('Regionais')}}</span>
-        </a>
-        <div id="collapseRegional" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">{{__('Igrejas')}}</h6>
-            <a class="collapse-item" href="#">{{__('Listar')}}</a>           
-          </div>
-        </div>
-      </li>
-
       <!-- Identidade ministerial, ID - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIdMinisterial" aria-expanded="true" aria-controls="collapseIdMinisterial">
@@ -100,8 +86,21 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('Igrejas')}}</h6>
             <a class="collapse-item" href="{{ route('identidades.index')}}">{{__('Listar')}}</a>
-            <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Vencidas')}}</a>
-            <a class="collapse-item" href="{{ route('imprimir') }}">{{__('iMPRIMIR')}}</a>           
+            <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Vencidas')}}</a>        
+          </div>
+        </div>
+      </li>
+
+      <!-- REGIONAIS - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRegional" aria-expanded="true" aria-controls="collapseRegional">
+          <i class="fas fa-fw fa-map-marked-alt"></i>
+          <span>{{__('Regionais')}}</span>
+        </a>
+        <div id="collapseRegional" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">{{__('Em breve!')}}</h6>
+            <!--<a class="collapse-item" href="#">{{__('Listar')}}</a>-->       
           </div>
         </div>
       </li>

@@ -168,12 +168,25 @@
         
         </div>
         <div class="card-body ml-3">
+            <div class="mb-3">
+                @if($member)
+                    <a class="btn btn-info" href="{{route('members.show', $identidade->member_id)}}"><i class="far fa-user mr-2"></i>Membro</a>
+                @endif
+                @if ($igreja)
+                    <a class="btn btn-info" href="{{route('igrejas.show', $igreja->id)}}"><i class="fas fa-church mr-2"></i>Igreja</a>
+                @endif
+                <a class="btn btn-info" href="{{route('identidades.index')}}"><i class="fas fa-list mr-2"></i>Listar</a>
+                @if(!$identidade->dataImpressao)
+                <a class="btn btn-info" href="{{route('imprimir', $identidade->id)}}" target="_blank"><i class="fas fa-print mr-2"></i>IMPRIMIR</a>
+            @endif
+            </div>
             <h3>{{Str::upper($member->nome ?? $identidade->nome)}}</h3>
             <p>
                 {{str_pad($identidade->id, 6, "0", STR_PAD_LEFT)}}
                 {{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}
                 {{$identidade->created_at->format('dmY')}}
                 {{$identidade->updated_at->format('dmY')}}
+                @isset($identidade->dataImpressao){{  $identidade->dataImpressao->format('dmYHms') }} @else 00000000 @endisset
             </p>
             <div class="jumbotron">
                 <table class="">
@@ -189,15 +202,6 @@
                         <tr><td class="t-a-r">Igreja (Nome Obreviado)</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
                     @endif
                 </table>
-            </div>
-            <div>
-                @if($member)
-                    <a class="btn btn-info" href="{{route('members.show', $identidade->member_id)}}"><i class="far fa-user mr-2"></i>Membro</a>
-                @endif
-                @if ($igreja)
-                    <a class="btn btn-info" href="{{route('igrejas.show', $igreja->id)}}"><i class="fas fa-church mr-2"></i>Igreja</a>
-                @endif
-                <a class="btn btn-info" href="{{route('identidades.index')}}"><i class="fas fa-list mr-2"></i>Listar</a>
             </div>
         </div>
 		<div class="card-footer text-muted">

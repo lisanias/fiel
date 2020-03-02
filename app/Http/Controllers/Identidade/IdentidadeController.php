@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Identidade;
 use App\Igreja;
+use App\Member;
+use PDF;
 
 class IdentidadeController extends Controller
 {
@@ -22,11 +24,12 @@ class IdentidadeController extends Controller
      */
     public function index()
     {
+        $classColor = 'success';
         $listTitle = 'Identidades Ministerias ativas';
         $identidades = Identidade::orderBy('created_at', 'DESC', SORT_REGULAR, true)
         ->where('validade', '>=', now())
             ->paginate(10);
-        return view('identidade.index', compact('identidades', 'listTitle'));
+        return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
     }
 
     /**
@@ -36,11 +39,12 @@ class IdentidadeController extends Controller
      */
     public function vencidas()
     {
+        $classColor = 'danger';
         $listTitle = 'Identidades Ministerias vencidas';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
             ->where('validade', '<', now())
             ->paginate(10);
-        return view('identidade.index', compact('identidades', 'listTitle'));
+        return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
     }
 
     /**
@@ -50,7 +54,7 @@ class IdentidadeController extends Controller
      */
     public function create()
     {
-        //
+        return 'Formulario de criação - não usado';
     }
 
     /**
@@ -61,7 +65,9 @@ class IdentidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $identidade = Identidade::create($request->all());
+
+        return redirect()->route('identidades.show', $identidade->id);
     }
 
     /**
@@ -111,5 +117,40 @@ class IdentidadeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * criar PDF para impressão.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pdf($id)
+    {
+        $identidade = Identidade::find($id);
+        $identidade->dataImpressao = now();
+        $identidade->save();
+        $pdf = PDF::loadView('print.idpdf', compact('identidade'))
+            ->setPaper('A4','portrait');
+            
+
+		// Exibir o arquivo PDF na tela para imprimir as etiquetas
+        return $pdf->stream('idpdf.pdf');
+    }
+
+    /**
+     * criar PDF para impressão.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function print($id)
+    {
+        $identidade = Identidade::find($id);
+        $identidade = Identidade::find($id);
+        $identidade->dataImpressao = now();
+        $identidade->save();
+
+        return view('print.id', compact('identidade'));
     }
 }

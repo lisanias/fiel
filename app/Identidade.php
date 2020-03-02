@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Identidade extends Model
 {
-    protected $dates = ['created_at', 'updated_at', 'validade', 'dataOrdenacao'];
+    protected $dates = ['created_at', 'updated_at', 'validade', 'dataOrdenacao', 'dataImpressao'];
+
+    protected $fillable = [
+        'member_id', 'nome', 'validade', 'cargo', 'rg', 'igreja', 'dataOrdenacao', 'obs',
+    ];
     
     public function member()
     {

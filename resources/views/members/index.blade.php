@@ -27,8 +27,8 @@
 				      <td>
 						  {{ $member->nome }} <br><em><small style='color:#87CEEB'>{{ Str::upper($member->titulo) }}</small></em>
 					  </td>
-				      <td style='vertical-align: middle;'>
-				      	<a class="link" href="{{ route('members.show', $member->id) }}"><i class="fas fa-chevron-right"></i></a>
+				      <td style='vertical-align: middle;' class="text-right">
+				      	<a class="btn btn-primary" href="{{ route('members.show', $member->id) }}"><i class="fas fa-chevron-right"></i></a>
 				      </td>
 				    </tr>
 				    @endforeach

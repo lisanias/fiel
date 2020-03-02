@@ -244,29 +244,52 @@
 					Identificação Ministerial de {{ $member->nome }}
 					</div>
 					<div class="card-body">
+
+						<div class="mb-3">
+							@isset($igreja)
+							{!! Form::open(['route' => 'identidades.store']) !!}						
+								@csrf
+								{!! Form::hidden('member_id', $member->id) !!}
+								{!! Form::hidden('validade', now()->addYear(3)) !!}
+								{!! Form::hidden('cargo', $member->titulo) !!}
+								{!! Form::hidden('nome', ($member->nome_abreviado)?$member->nome_abreviado:$member->nome) !!}
+								{!! Form::hidden('rg', $member->rg) !!}
+								{!! Form::hidden('igreja', ($igreja->nome_abreviado)?$igreja->nome_abreviado:$igreja->nome) !!}
+								{!! Form::hidden('dataOrdenacao', now()) !!}
+								<button type="submit" class='btn btn-success'>
+									<i class="fas fa-plus text-white-50"></i>
+									{{__('Adicionar')}}
+								</button>								
+							{!! Form::close() !!}
+							@else
+								<a href="{{ route('members.edit', $member->id) }}" class="link">
+									{{__('Editar Membro')}}
+								</a> {{__('para associar com uma igreja e poder criar uma nova ID Ministerial')}}
+							@endisset
+						</div>
 						
 						<table class="table table-borderless table-hover mb-0" style="line-height: 1.2;">
 				
 							<tbody>
 							@foreach($identidades as $identidade)
-							<tr>
+							<tr class='@if($identidade->validade < now()->format('Y-m-a'))bg-danger @else bg-success @endif text-white'>
 								<td style='vertical-align: middle;'>
 									<small>{{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}<br></small>
-									<strong class="text-success">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>
+									<strong class="">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>
 								</td>
 								<td style='vertical-align: middle;'>
 									<h5 class="mb-0">{{Str::upper($identidade->nome)}}</h5>				
 								</td>
 								<td style='vertical-align: middle;'>
-									<small class="text-success">Validade:</small><br> 									
+									<small class="">Validade:</small><br> 									
 									{{$identidade->validade->format('m/Y')}}
 								</td>
 								<td style='vertical-align: middle;'>
-									<small class="text-success">Criado em:</small><br> 
+									<small class="">Criado em:</small><br> 
 									{{ $identidade->created_at->format('d/m/Y') }}
 								</td>
-								<td style='vertical-align: middle;'>
-									<a class="link" href="{{ route('identidades.show', $identidade->id) }}">
+								<td style='vertical-align: middle;' class="text-right">
+									<a class="btn btn-light" href="{{ route('identidades.show', $identidade->id) }}">
 										<i class="fas fa-chevron-right"></i>
 									</a>
 								</td>

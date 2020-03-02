@@ -15,7 +15,7 @@
 
 
 	<div class="col-md-12">
-		<div class="card shadow mb-4  border-left-success">
+		<div class="card shadow mb-4  border-left-{{$classColor ?? 'success'}}">
 			        
 			@yield('card')
 				

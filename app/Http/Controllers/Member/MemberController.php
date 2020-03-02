@@ -22,7 +22,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::orderBy('nome', 'desc', SORT_REGULAR, true)->paginate(20);
+        $members = Member::orderBy('nome', 'ASC', SORT_REGULAR, true)->paginate(20);
         return view('members.index', compact('members'));
     }
 
@@ -87,7 +87,7 @@ class MemberController extends Controller
         }
         $phones = $member->phones;
         $addresses = $member->addresses;
-        $identidades = $member->identidades;
+        $identidades = $member->identidades->sortByDesc('validade');
         $igreja = $member->igreja('Igreja')->first();
         
         return view('members.show', compact('member', 'phones', 'addresses', 'igreja', 'identidades'));

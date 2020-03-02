@@ -4,7 +4,7 @@
 
 
 	
-		<div class="card-header text-white bg-success" id="chbl">
+		<div class="card-header text-white bg-{{$classColor ?? 'success'}}" id="chbl">
             <h3 class="mb-0">{{__($listTitle??'Identidades Ministeriais...')}}</h3>
         </div>
 		<div class="card-body">
@@ -16,21 +16,21 @@
 				<tr>
                     <td class="" style='vertical-align: middle;'>
                         <small>{{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}<br></small>
-                        <strong class="text-success">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>
+                        <strong class="text-{{$classColor ?? 'success'}}">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>
                     </td>
                     <td class="" style='vertical-align: middle;'>
                         <h5 class="mb-0">{{Str::upper($identidade->nome)}}</h5>				
                     </td>
                     <td class='d-none d-lg-block' style='vertical-align: middle;'>
-                        <small class="text-success">Validade</small><br> 
+                        <small class="text-{{$classColor ?? 'success'}}">Validade</small><br> 
                         {{$identidade->validade->format('m/Y')}}
                     </td>
                     <td class='' style='vertical-align: middle;'>
-                        <small class="text-success">Igreja</small><br> 
+                        <small class="text-{{$classColor ?? 'success'}}">Igreja</small><br> 
                         {{substr($identidade->igreja, 0,40)}}
                     </td>
-					<td style='vertical-align: middle;'>
-					    <a class="link" href="{{ route('identidades.show', $identidade->id) }}"><i class="fas fa-chevron-right"></i></a>
+					<td style='vertical-align: middle;' class="text-right">
+					    <a class="btn btn-primary" href="{{ route('identidades.show', $identidade->id) }}"><i class="fas fa-chevron-right"></i></a>
 					</td>
 				</tr>
 				@endforeach

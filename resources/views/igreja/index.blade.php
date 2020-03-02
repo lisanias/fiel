@@ -19,7 +19,7 @@
 				<tbody>
 				@foreach($igrejas as $igreja)
 				<tr>
-					<td>
+					<td style='vertical-align: middle;' >
 						{{Str::upper($igreja->nome)}}<br>
 						<small style='color:#87CEEB'>
 							@isset($igreja->bairro) {{$igreja->bairro}}, @endisset
@@ -27,8 +27,8 @@
 							@if($igreja->estado) - {{$igreja->estado}}@endif 
 						</small>
 					</td>
-					<td style='vertical-align: middle;'>
-					<a class="link" href="{{ route('igrejas.show', $igreja->id) }}"><i class="fas fa-chevron-right"></i></a>
+					<td style='vertical-align: middle;' class="text-right">
+					<a class="btn btn-primary" href="{{ route('igrejas.show', $igreja->id) }}"><i class="fas fa-chevron-right"></i></a>
 					</td>
 				</tr>
 				@endforeach

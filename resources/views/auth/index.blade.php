@@ -15,27 +15,34 @@
 
 
 	<div class="col-md-12">
-		<div class="card shadow mb-4  border-left-primary">
-            <div class="card-header">Usuários cadastrados</div>
+		<div class="card shadow mb-4  border-left-primary ">
 
-			<table class="table table-hover">
-			  
-			  <tbody>
-			    @foreach($users as $user)
-			    <tr>
-			      <th class="d-none" scope="row">{{ $user->id }}</th>
-			      <td>{{ $user->name }}</td>
-			      <td>
-			      	<a class="btn btn-sm btn-primary" href="{{ route('user.show', $user->id) }}"><i class="fas fa-chevron-right"></i></a>
-			      </td>
-			    </tr>
-			    @endforeach
-			   
-			  </tbody>
-			</table>
+			<div class="card-header">Usuários cadastrados</div>
+			
+			<div class="card-body">
+
+				
+				<table class="table table-hover mb-0">
+				
+					<tbody>
+						@foreach($users as $user)
+						<tr  @if($loop->last) class='table-lb' @endif >
+						<th class="vm d-none" scope="row">{{ $user->id }}</th>
+						<td class="vm">{{ $user->name }}</td>
+						<td class="vm text-right">
+							<a class="btn btn-sm btn-primary" href="{{ route('user.show', $user->id) }}"><i class="fas fa-chevron-right"></i></a>
+						</td>
+						</tr>
+						@endforeach
+					
+					</tbody>
+				</table>
+				
+			</div>
+
 		</div>
     </div>
-</div>
+
 
 
 @endsection
