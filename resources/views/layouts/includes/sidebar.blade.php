@@ -84,7 +84,7 @@
         </a>
         <div id="collapseIdMinisterial" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">{{__('Igrejas')}}</h6>
+            <h6 class="collapse-header">{{__('IDs Ministeriais')}}</h6>
             <a class="collapse-item" href="{{ route('identidades.index')}}">{{__('Listar')}}</a>
             <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Vencidas')}}</a>        
           </div>

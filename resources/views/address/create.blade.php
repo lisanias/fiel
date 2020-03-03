@@ -17,7 +17,10 @@
 				
 
 				@include ("address._form", ['btn_texto' => 'Salvar alteração'])
-
+				<!-- Botão pular -->
+				<a class="btn btn-warning ml-1" href="{{ route('members.show', $address_pai->id) }}">
+					Pular
+				</a>
 				{!! Form::close() !!}					
 
 			</div>

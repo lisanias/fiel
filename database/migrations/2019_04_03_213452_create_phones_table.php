@@ -18,7 +18,7 @@ class CreatePhonesTable extends Migration
             $table->unsignedBigInteger('member_id');
             $table->string('ddd', 5)->nullable();
             $table->string('numero', 10);
-            $table->string('telefone_tipo', 15);
+            $table->string('telefone_tipo', 15)->nullable();
             $table->timestamps();
 
             $table->foreign('member_id')

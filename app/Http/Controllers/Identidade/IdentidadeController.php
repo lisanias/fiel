@@ -79,6 +79,14 @@ class IdentidadeController extends Controller
     public function show($id)
     {
         $identidade = Identidade::find($id);
+        if(!isset($identidade)){
+            return redirect()
+                ->route('identidades.index')
+                ->with([
+                    'alert'=>'Identidade não encontrada', 
+                    'alert_type'=>'danger'
+                    ]);
+        }
         $member = $identidade->member;
         $igreja = ($member) ? Igreja::find($identidade->member->igreja_id) : '';
         //dd($igreja);
@@ -117,26 +125,7 @@ class IdentidadeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * criar PDF para impressão.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function pdf($id)
-    {
-        $identidade = Identidade::find($id);
-        $identidade->dataImpressao = now();
-        $identidade->save();
-        $pdf = PDF::loadView('print.idpdf', compact('identidade'))
-            ->setPaper('A4','portrait');
-            
-
-		// Exibir o arquivo PDF na tela para imprimir as etiquetas
-        return $pdf->stream('idpdf.pdf');
-    }
+    }    
 
     /**
      * criar PDF para impressão.
@@ -152,5 +141,18 @@ class IdentidadeController extends Controller
         $identidade->save();
 
         return view('print.id', compact('identidade'));
+    }   
+
+    /**
+     * Procurar por uma id pelo número.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function find(Request $request)
+    {
+        
+        return redirect()->route('identidades.show', $request->id);
+
     }
 }

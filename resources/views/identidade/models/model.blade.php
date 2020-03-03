@@ -4,6 +4,10 @@
 
 @section('page-title', __('Identidades Ministeriais')) 
 
+@section('mainsearch')
+    @include('identidade.includes.procura')
+@endsection
+
 @section('page-title-r')
     <a href="{{ URL::previous() }}" class="btn btn-sm btn-secondary shadow-sm">
     	<i class="fas fa-undo fa-sm text-white-50"></i>
