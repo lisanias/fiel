@@ -45,7 +45,7 @@ class IgrejaController extends Controller
     {
         $validatedData = $request->validate([
             'nome' => 'required|max:100|string',
-            'nome_abreviado' => 'nullable|max:35',
+            'nome_abreviado' => 'nullable|max:34',
             'email' => 'nullable|email|max:191',
             'membro_desde' => 'nullable|date',
             'telefone' => 'nullable|max:19',
@@ -65,8 +65,8 @@ class IgrejaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {        
+        session()->put('last_igreja',$id);
         $igreja = Igreja::find($id);
         $members = $igreja->member;
         $pastor = $igreja->member->find($igreja->pastor_id);

@@ -24,7 +24,7 @@
       <hr class="sidebar-divider">
 
 
-      <!-- Heading -->
+      <!-- Links Rápidos -->
       <div class="sidebar-heading">
         {{__('Links rápidos')}}
       </div>
@@ -99,8 +99,9 @@
         </a>
         <div id="collapseRegional" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">{{__('Em breve!')}}</h6>
-            <!--<a class="collapse-item" href="#">{{__('Listar')}}</a>-->       
+            <h6 class="collapse-header">{{__('Regionais da Fiel')}}</h6>
+            <a class="collapse-item" href="{{route('regionais.index')}}">{{__('Listar Regionais')}}</a>    
+            <a class="collapse-item" href="{{route('regionais.create')}}">{{__('Cadastrar Regional')}}</a>    
           </div>
         </div>
       </li>

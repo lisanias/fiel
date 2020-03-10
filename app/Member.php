@@ -35,6 +35,11 @@ class Member extends Model
         return $this->belongsTo('App\Igreja');
     }
 
+    public function regional()
+    {
+        return $this->belongsTo('App\Regional');
+    }
+    
     public function identidades()
 	{
 		return $this->hasMany('App\Identidade');

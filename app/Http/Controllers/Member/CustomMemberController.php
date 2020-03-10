@@ -32,6 +32,26 @@ class CustomMemberController extends Controller
 	}
 	
 	/**
+	 * Listar membros das regionais
+	 */
+	public function indexRegionais($regional_id)
+    {		
+		$members = Member::orderBy('nome', 'ASC', SORT_REGULAR, true)
+			->where('regional_id', $regional_id)
+			->paginate(20);
+		
+		if($members->isEmpty()){
+			return redirect()
+				->route('regionais.show', $regional_id)
+				->with(['alert'=>'Regional sem nenhum membro relacionado.', 'alert_type'=>'warning']);
+		}
+		
+		$nome_regional = $members->first()->regional->nome;
+
+        return view('members.index', compact('members', 'nome_regional'));
+	}
+
+	/**
 	 * Listar membros apagados
 	 */
 	public function indexDeleted()
@@ -142,4 +162,18 @@ class CustomMemberController extends Controller
 		// Exibir o arquivo PDF na tela para imprimir as etiquetas
 		return $pdf->stream('etiqueta.pdf');
 	}
+
+	public function upidig(Request $request, $id)
+	{
+		// Busca o membro pelo id
+        $member = Member::find($id);
+
+        // Atualiza a base de dados
+		$update = $member->update($request->all());
+		
+		return redirect()
+                ->route( 'members.show', $id )
+                ->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
+	}
+
 }

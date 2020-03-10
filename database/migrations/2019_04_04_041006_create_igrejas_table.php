@@ -15,6 +15,7 @@ class CreateIgrejasTable extends Migration
     {
         Schema::create('igrejas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('regional_id')->nullable()->default(NULL);
             $table->string('nome', 191);
             $table->string('nome_abreviado', 191)->nullable();
             $table->string('email', 191)->nullable();

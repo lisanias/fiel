@@ -52,7 +52,7 @@ class MemberController extends Controller
         $validatedData = $request->validate([
             'titulo' => 'required|max:20',
             'nome' => 'required|max:100|string',
-            'nome_abreviado' => 'nullable|max:20',
+            'nome_abreviado' => 'nullable|max:30',
             'email' => 'nullable|email|max:191',
             'dnas' => 'nullable|date',
             'naturalde' => 'nullable|max:100',
@@ -101,10 +101,13 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
+        // colocar o membro em uma section para voltar para ele depois de alguma ação
+        session()->put('last_member', $id);
+
         $member = Member::find($id);
         $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
         
-        //dd($igrejas);
+        //dd($member);
         return view('members.edit', compact('member', 'igrejas'));
     }
 
@@ -120,7 +123,7 @@ class MemberController extends Controller
         $validatedData = $request->validate([
             'titulo' => 'required|max:20',
             'nome' => 'required|max:100|string',
-            'nome_abreviado' => 'nullable|max:20',
+            'nome_abreviado' => 'nullable|max:32',
             'email' => 'nullable|email|max:191',
             'dnas' => 'nullable|date',
             'naturalde' => 'nullable|max:100',

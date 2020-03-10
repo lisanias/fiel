@@ -21,7 +21,7 @@
 		{!! Form::text('nome_abreviado', null, ['class' => 'form-control']) !!}
     @enderror
     <small id="nome_abreviadoHelpBlock" class="form-text text-gray-500">
-        Nome Abreviado caso o nome normal tenha mais de 35 caracteres ou
+        Nome Abreviado (opcional) caso o nome normal tenha mais de 34 caracteres ou
         nome da igreja como deseja que fique na ID ministerial.
     </small>
 </div>

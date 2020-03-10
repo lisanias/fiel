@@ -101,7 +101,18 @@ class IdentidadeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $identidade = Identidade::find($id);
+        if(!isset($identidade)){
+            return redirect()
+                ->route('identidades.index')
+                ->with([
+                    'alert'=>'Identidade não encontrada', 
+                    'alert_type'=>'danger'
+                    ]);
+        }
+        $member = $identidade->member;
+        $igreja = ($identidade->member) ? Igreja::find($identidade->member->igreja_id) : '';
+        return view('identidade.edit', compact('identidade', 'igreja'));
     }
 
     /**
@@ -113,7 +124,35 @@ class IdentidadeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Valida os campos
+        $validatedData = $request->validate([
+            'nome' => 'required|max:32|string',
+            'cargo' => 'required|max:10',
+            'igreja' => 'required|max:34|string',
+        ]);
+
+        // Busca a Identidade Ministerial pelo id
+        $identidade = Identidade::find($id);
+
+        // Verifica se ja foi impresso - não alterar IDs que foram impressas
+        if($identidade->dataImpressao){
+            return redirect()
+                ->route('identidades.show', $id)
+                ->with(['alert'=>__('Não é possivel alterar uma Identidade Ministerial que já foi impressa'), 'alert_type'=>'info']);
+        }
+ 
+        // Atualiza a base de dados
+        $update = $identidade->update($request->all());
+        
+        if($update){
+            return redirect()
+                ->route('identidades.show', $id)
+                ->with(['alert'=>'Atualizado com sucesso', 'alert_type'=>'success']);
+        } else {
+            return redirect()
+                ->route('identidades.edit', $id)
+                ->with(['alert'=>'Houve algum erro e os dados não foram atualizados', 'alert_type'=>'success']);
+        }
     }
 
     /**
@@ -135,7 +174,7 @@ class IdentidadeController extends Controller
      */
     public function print($id)
     {
-        $identidade = Identidade::find($id);
+        //$identidade = Identidade::find($id);
         $identidade = Identidade::find($id);
         $identidade->dataImpressao = now();
         $identidade->save();

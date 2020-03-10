@@ -16,12 +16,14 @@ class CreateRegionaisTable extends Migration
         Schema::create('regionais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome', 191);
-            $table->unsignedBigInteger('lider_id');
-            $table->integer('regionsable_id');
-            $table->string('regionsable_type', 50);
+            $table->string('cidade', 50);
+            $table->string('uf', 2);
+            $table->string('pais', 50)->nullable()->default('Brasil');
+            $table->text('descricao', 50)->nullable()->default(null);
+            $table->unsignedBigInteger('lider_id')->nullable();
             $table->timestamps();
             
-            $table->foreign('lider_id')->references('id')->on('members');
+            /*$table->foreign('lider_id')->references('id')->on('members');*/
         });
     }
 

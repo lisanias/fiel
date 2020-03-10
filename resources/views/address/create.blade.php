@@ -5,7 +5,7 @@
 @section('form')
 
             <div class="card-header">
-            	{{__('Criar novo endereço para ')}} {{ $address_pai->nome }}
+            	{{__('Criar novo endereço para ')}} {{ $address_pai->nome }} --  {{session('origin')}}
             	<span class="badge badge-info float-right">ID Membro {{ str_pad($address_pai->id, 5, "0", STR_PAD_LEFT) }}</span>
         	</div>
 
@@ -18,10 +18,14 @@
 
 				@include ("address._form", ['btn_texto' => 'Salvar alteração'])
 				<!-- Botão pular -->
-				<a class="btn btn-warning ml-1" href="{{ route('members.show', $address_pai->id) }}">
+				<a class="btn btn-warning ml-1" href="{{ route('igrejas.show', $address_pai->id) }}">
 					Pular
 				</a>
-				{!! Form::close() !!}					
+				{!! Form::close() !!}
+				
+				@if(session('origin'))
+					{{session('origin')}}
+				@endif
 
 			</div>
 			

@@ -101,12 +101,10 @@
 								{{__('Igreja')}}
 							</div>
 							<div class="field w75">
-								@if($igreja)
-									<a href="{{ route('igrejas.show', $igreja->id)}}" class='' >
-										{{ $igreja->nome }}
-									</a>
+								@if($igreja)									
+									{{ $igreja->nome }}
 								@else
-									{!! $member->igreja ? $member->igreja : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+									{!! $member->igreja_nome ? $member->igreja_nome : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
 								@endif
 							</div>
 						</div>
@@ -136,7 +134,14 @@
 							<a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary shadow-sm">
 								<i class="fas fa-edit fa-sm text-white-50"></i>
 								{{__('Editar')}}
-							</a>							
+							</a>
+							
+							@if($igreja)
+								<a href="{{ route('igrejas.show', $igreja->id)}}" class="btn btn-info shadow-sm ml-1" title='{{ $igreja->nome }}'>
+									<i class="fas fa-fw fa-church fa-sm text-white-50"></i>
+									{{__('Igreja')}}
+								</a>
+							@endif
 
 							<div class="ml-1">
 								<form id='apagar' method="post" action="{!! route('members.destroy', $member->id) !!}"> 

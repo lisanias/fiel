@@ -25,12 +25,15 @@ Route::resource('admin/user', 'User\AdminUserController');
 Route::post('admin/user/passwor/{id}/update', 'User\AdminUserController@updatePassword')->name('update.password');
 
 /** Membros (Members) */
-Route::get(     'members/aniversariantes/{mes?}',  'Member\CustomMemberController@aniversariantes')->name('members.niver');
-Route::get(     'members/aniversariantes/{mes}/etiquetas',  'Member\CustomMemberController@etiquetasAniversariantes')->name('members.niver.etiquetas');
-Route::get(     'members/deleted',  'Member\CustomMemberController@indexDeleted')->name('members.deleted');
-Route::get(     'members/deleted/{id}',  'Member\CustomMemberController@restore')->name('members.restore');
-Route::post(    'members/find', 'Member\CustomMemberController@find')->name('member.find');
-Route::get(     'members/new',  'Member\CustomMemberController@new')->name('member.new');
+Route::get( 'members/aniversariantes/{mes?}',           'Member\CustomMemberController@aniversariantes')->name('members.niver');
+Route::get( 'members/aniversariantes/{mes}/etiquetas',  'Member\CustomMemberController@etiquetasAniversariantes')->name('members.niver.etiquetas');
+Route::get( 'members/deleted',                          'Member\CustomMemberController@indexDeleted')->name('members.deleted');
+Route::get( 'members/deleted/{id}',                     'Member\CustomMemberController@restore')->name('members.restore');
+Route::post('members/upidig/{id}',                      'Member\CustomMemberController@upidig')->name('members.upidig');
+Route::post('members/find',                             'Member\CustomMemberController@find')->name('member.find');
+Route::get( 'members/new',                              'Member\CustomMemberController@new')->name('member.new');
+Route::get( 'members/regional/{id_regional}',           'Member\CustomMemberController@indexRegionais')->name('members.regional');
+
 Route::resource('members',      'Member\MemberController');
 
 /** Endereços (Address) */
@@ -52,4 +55,6 @@ Route::get('identidade/{id}/pdf',      'Identidade\identidadeController@pdf')->n
 Route::get('identidade/{id}/imprimir',      'Identidade\identidadeController@print')->name('imprimir');
 Route::post('identidade/procurar',      'Identidade\identidadeController@find')->name('id.find');
 Route::resource('identidades',      'Identidade\identidadeController');
-//Route::get('imprimir', function() { return view('print.id'); })->name('imprimirso');
+
+/** Regionais */
+Route::resource('regionais', 'Regional\RegionalController');

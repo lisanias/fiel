@@ -16,7 +16,7 @@ class CreateIdentidadesTable extends Migration
         Schema::create('identidades', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-
+            $table->unsignedBigInteger('regional_id')->nullable()->default(NULL);
             $table->unsignedBigInteger('member_id');
             $table->date('validade');
             $table->string('cargo');

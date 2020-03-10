@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             
-            <h2>{{$igreja->nome}}</h2>
+            <h2>{{$igreja->nome}}</h2> {{session('origin')}}
                         
             @foreach ($addresses as $address)
 
@@ -149,6 +149,17 @@
                 </div>
 
             @endif
+            {!! Form::model($igreja, ['method' => 'POST', 'url' => route('members.upidig', session('last_member')) ]) !!}
+            
+                <input type="hidden" name="igreja_id" value="{{$igreja->id}}">
+                {!! Form::button('Adicinar ultimo membro visualizado', ['type' => 'submit', 'class' => 'btn btn-success mt-3']) !!}
+                    
+            {!! Form::close() !!}
+
+            <a class="btn btn-warning mt-3" href="{{ route('members.show', session('last_member')) }}">
+                Ir para último membro visualizado!
+                <i class="fas fa-chevron-circle-right"></i>
+            </a>
                 
         </div>
     </div>

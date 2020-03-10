@@ -80,10 +80,10 @@
                 </div>
             </div>
             
-            <div class="row justify-content-center ">
+            <div class="row justify-content-center">
 
                 @if (session('alert'))
-                    <div class="alert alert-{{ session('alert_type' ?? 'success') }}"  role="alert">
+                    <div class="alert alert-{{ session('alert_type' ?? 'success') }} text-center col m-3"  role="alert">
                         {{ session('alert') }}
                     </div>
                 @endif

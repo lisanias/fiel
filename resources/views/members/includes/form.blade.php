@@ -11,6 +11,16 @@ function formatar(mascara, documento){
 }
 </script>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <!-- Titulo -->
 <div class="form-group">
 	{!! Form::label('titulo', __('Titulo')) !!}	
@@ -37,7 +47,7 @@ function formatar(mascara, documento){
 
 <!-- nome_abreviado -->
 <div class="form-group">
-	{!! Form::label('nome_abreviado',__('Nome para impressao na ID Ministerial')) !!}
+	{!! Form::label('nome_abreviado',__('Nome para impressao na ID Ministerial (Máximo de 32 caracteres)')) !!}
 			
 	@error('nome_abreviado')
 		{!! Form::text('nome_abreviado', null, ['class' => 'form-control is-invalid ucase']) !!}
@@ -100,7 +110,7 @@ function formatar(mascara, documento){
 	<!-- Numero de CPF -->
 	<div class="form-group">
 		<?php $invalid = ($errors->has("cpf")?'is-invalid':'') ?>
-		{!! Form::label('cpf',__('CPF')) !!}
+		{!! Form::label('cpf',__('CPF')) !!}		
 		{!! Form::text('cpf', null, ['class' => 'form-control ' . $invalid, 'OnKeyPress'=>'formatar("###.###.###-##", this)', 'maxlength'=>'14']) !!}
 		@error('cpf')
 		    <div class="invalid-feedback">{{ $message }}</div>
@@ -114,14 +124,20 @@ function formatar(mascara, documento){
 		<div class="card border-warning">
 			<div class="card-header border-warning">{{ __('Igreja - NÃO VINCULADA A NENHUMA IGREJA') }}</div>
 			<div class="card-body">
-				{!! Form::text('igreja', null, ['class' => 'form-control border-warning','disabled']) !!}
+				<input 
+					id="igreja_nome" 
+					type="text" 
+					class="form-control border-warning @error('igreja_nome') is-invalid @enderror"
+			 		value='{{$member->igreja_nome??old('igreja_nome')}}'
+					disabled
+				>
 				<p class="card-text text-warning" style="padding-top:1em;">
 					Campo da base de dados antiga contendo o nome da igreja. <br>
 					Escolha uma igreja ja cadastrada na fiel no campo abaixo ou adicione uma nova igreja como filiada da Fiel.
 				</p>
 			</div>
 			<div class="card-footer border-warning">
-				<a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Adicionar Igreja</a>
+				<a href="{{route('igrejas.create')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Adicionar Igreja</a>
 			</div>
 		</div>
 	</div>
@@ -173,13 +189,5 @@ function formatar(mascara, documento){
 		{!! Form::button(__($btn_texto), ['type' => 'submit', 'class' => 'btn btn-success']) !!}
 	</div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+
 

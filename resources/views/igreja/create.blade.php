@@ -13,20 +13,20 @@
 
 	<div class="card">
 
-            <div class="card-header">
-            	{{__('Cadastrar Nova Igreja')}}            	
-        	</div>
+		<div class="card-header">
+			{{__('Cadastrar Nova Igreja')}}       	
+		</div>
 
 
-			<div class="card-body">
+		<div class="card-body">
 				
-				{!! Form::open(['route'=>'igrejas.store']) !!}
+			{!! Form::open(['route'=>'igrejas.store']) !!}
 
-				@include ("igreja.includes.form", ['btn_texto' => 'Criar'])
+			@include ("igreja.includes.form", ['btn_texto' => 'Criar'])
 
-				{!! Form::close() !!}					
+			{!! Form::close() !!}					
 
-			</div>
+		</div>
 
     </div>
     

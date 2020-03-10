@@ -71,11 +71,13 @@
 		}
 		.numero {			
 			left: 90mm;
-  			top: 25.8mm;
+  			top: 25.9mm;
   			width: 10mm;
-  			text-align: right;
+			
 			font-weight: 900;
-			font-size: 9pt;
+			font-size: 8.4pt;
+
+  			text-align: right;
   			color: #247c50;
 		}
 		.titulo {			
@@ -99,14 +101,17 @@
 			left: 37.5mm;
   			top: 44.5mm;
   			width: 63mm;
-  			text-align: left;
-			font-family: 'Roboto', sans-serif;
+			
+			font-family: 'Roboto', sans-serif;			
+			font-size: 9pt;
 			font-weight: 900;
+			
+  			text-align: left;
   			white-space: nowrap;
   			overflow: hidden;
 		}
 		.l2 {			
-			font-size: 8pt; 
+			font-size: 7pt; 
   			font-weight: 700;
   			top: 55.5mm;
 		}
@@ -131,24 +136,27 @@
   			white-space: nowrap;
   			overflow: hidden;
 		}
-		.igreja {			
-  						
-			font-size: 8pt; 
-  			font-weight: 700;
+		.igreja {  			
   			top: 63mm;		
 			left: 37.5mm;
-  			width: 64mm;
+  			width: 63.3mm;
+
+			font-size: 7.55pt; 
+  			font-weight: 700;
+
   			text-align: left;
   			white-space: nowrap;
   			overflow: hidden;
 		}
-		.emissao {	  						
-			font-size: 8pt; 
-			font-family: 'Open Sans Condensed', sans-serif;			
-  			font-weight: 400;
+		.emissao {
   			top: 58mm;		
 			left: 110mm;
   			width: 12mm;
+			
+			font-family: 'Open Sans Condensed', sans-serif;			
+  			font-weight: 300;	
+			font-size: 8pt; 
+
   			text-align: center;
   			white-space: nowrap;
   			overflow: hidden;
@@ -224,12 +232,12 @@
 					</small>
 				</h4>
 				<table>
-					<tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper($identidade->nome)}}</strong></td></tr>
+					<tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper(mb_strimwidth($identidade->nome, 0, 32, ''))}}</strong></td></tr>
 					<tr><td class="t-a-r">Titulo</td><td><strong>{{Str::upper($identidade->cargo)}}</strong></td></tr>
 					<tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->dataOrdenacao->format('d/m/Y')}}</td></tr>
 					<tr><td class="t-a-r">Identidade</td><td>{{$identidade->rg}}</td></tr>
 					<tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
-					<tr><td class="t-a-r">Igreja</td><td>{{ Str::upper($identidade->igreja) }}</td></tr>
+					<tr><td class="t-a-r">Igreja</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja, 0, 34, '')) }}</td></tr>
 				</table>
 			</div>
 			<div class="texto rodape" style="text-align:center;">
