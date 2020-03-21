@@ -13,7 +13,7 @@ class Member extends Model
     protected $dates = ['created_at', 'updated_at', 'dnas', 'data_filiacao', 'data_ordenacao', 'deleted_at'];
 
     protected $fillable = [
-        'titulo', 'nome', 'nome_abreviado', 'email', 'dnas', 'naturalde', 'rg', 'cpf', 'igreja', 'igreja_id', 'data_filiacao', 'data_ordenacao', 'obs',
+        'titulo', 'nome', 'nome_abreviado', 'regional_id', 'email', 'dnas', 'naturalde', 'rg', 'cpf', 'igreja', 'igreja_id', 'data_filiacao', 'data_ordenacao', 'obs',
     ];
 
     protected $hidden = [

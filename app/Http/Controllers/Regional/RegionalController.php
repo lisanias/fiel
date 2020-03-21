@@ -84,7 +84,18 @@ class RegionalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $regional=Regional::find($id);
+
+        // Procurar dados do Lider da regional caso tenha algum lider cadastrado
+        $lider = $regional->lider_id? \App\Member::find($regional->lider_id):null;
+
+        //dd($regional);
+        if(!$regional){
+            return redirect()
+                ->route('regionais.index')
+                ->with(['alert'=>'Regional não encontrada!', 'alert_type'=>'info']);
+        }
+        return view('regionais.edit', compact('regional', 'lider'));
     }
 
     /**
@@ -96,7 +107,21 @@ class RegionalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $regional = Regional::find($id);
+        $update = $regional->update($request->all());
+
+        if($update){
+            return redirect()
+                ->route('regionais.show', $regional->id)
+                ->with(['alert' => 'Os dados da regional '.$regional->nome.' foi atualizado com sucesso', 'alert_type' => 'success']);
+        } else {
+            return redirect()
+                ->back()
+                ->with(['alert' => 'Os dados não foram gravados', 'alert_type' => 'alert']);
+        }
+        return redirect()
+            ->route('regionais.index')
+            ->with(['alert' => 'Houve algum erro!', 'alert_type' => 'alert']);
     }
 
     /**

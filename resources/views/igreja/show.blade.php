@@ -149,17 +149,22 @@
                 </div>
 
             @endif
-            {!! Form::model($igreja, ['method' => 'POST', 'url' => route('members.upidig', session('last_member')) ]) !!}
-            
-                <input type="hidden" name="igreja_id" value="{{$igreja->id}}">
-                {!! Form::button('Adicinar ultimo membro visualizado', ['type' => 'submit', 'class' => 'btn btn-success mt-3']) !!}
-                    
-            {!! Form::close() !!}
 
-            <a class="btn btn-warning mt-3" href="{{ route('members.show', session('last_member')) }}">
-                Ir para último membro visualizado!
+            @if (session('last_member'))
+                
+                {!! Form::model($igreja, ['method' => 'POST', 'url' => route('members.upidig', session('last_member')) ]) !!}
+                
+                    <input type="hidden" name="igreja_id" value="{{$igreja->id}}">
+                    {!! Form::button('Adicinar '.session('last_member_nome'), ['type' => 'submit', 'class' => 'btn btn-success mt-3']) !!}
+                        
+                {!! Form::close() !!}
+
+            @else
+                <a class="btn btn-warning mt-3" href="{{ route('members.index') }}">
+                    Encontrar um membro para acrescentar a igreja. 
                 <i class="fas fa-chevron-circle-right"></i>
             </a>
+            @endif
                 
         </div>
     </div>

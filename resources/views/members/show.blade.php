@@ -141,6 +141,11 @@
 									<i class="fas fa-fw fa-church fa-sm text-white-50"></i>
 									{{__('Igreja')}}
 								</a>
+							@else
+								<a href="{{ route('member.selecionar', $member->id) }}" class="btn btn-success shadow-sm ml-1">
+									<i class="fas fa-edit fa-sm text-white-50"></i>
+									{{__('Selecionar membro')}}
+								</a>
 							@endif
 
 							<div class="ml-1">

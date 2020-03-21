@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Phone;
 use App\Igreja;
+use App\Regional;
 use App\Rules\verificaCPF;
 use Illuminate\Http\Request;
 
@@ -101,14 +102,12 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        // colocar o membro em uma section para voltar para ele depois de alguma ação
-        session()->put('last_member', $id);
-
+ 
+        $regionais = Regional::get()->pluck('nome', 'id');
         $member = Member::find($id);
-        $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
-        
-        //dd($member);
-        return view('members.edit', compact('member', 'igrejas'));
+        $igrejas = Igreja::get()->pluck('NomeCidade', 'id');        
+
+        return view('members.edit', compact('member', 'igrejas', 'regionais'));
     }
 
     /**

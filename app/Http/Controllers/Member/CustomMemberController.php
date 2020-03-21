@@ -168,12 +168,34 @@ class CustomMemberController extends Controller
 		// Busca o membro pelo id
         $member = Member::find($id);
 
-        // Atualiza a base de dados
+        // Atualiza a base de dado
 		$update = $member->update($request->all());
+
+		session()->forget(['last_member','last_member_nome']);
 		
 		return redirect()
+                ->route( 'igrejas.show', $member->igreja->id )
+                ->with(['alert'=>'Obreiro adicionado!', 'alert_type'=>'success']);
+	}
+
+	public function selecionar($id)
+	{
+		// Busca o membro pelo id
+		$member = Member::find($id);
+		
+        // colocar o membro em uma section para voltar para ele depois de alguma ação
+        session()->put('last_member', $id);
+		session()->put('last_member_nome', $member->nome);  
+		
+		if(session()->get('last_igreja')){
+		return redirect()
+                ->route( 'igrejas.show', session()->get('last_igreja') )
+				->with(['alert'=>'Obreiro selecionado!', 'alert_type'=>'success']);
+		} else 	{
+		return redirect()
                 ->route( 'members.show', $id )
-                ->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
+				->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
+		}
 	}
 
 }

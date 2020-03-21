@@ -39,7 +39,7 @@
                     {{$regional->membros->find($regional->lider_id)->nome??'Sem Lider designado'}}
                 </td>
                 <td style='vertical-align: middle;' class="text-right">
-                    <a class="link list-group-item-action" href="{{ route('regionais.show', $regional->id) }}">
+                    <a class="btn btn-light list-group-item-action text-warning" href="{{ route('regionais.show', $regional->id) }}">
                         <i class="fas fa-chevron-right"></i>		  
                     </a>
                 </td>

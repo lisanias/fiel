@@ -33,6 +33,7 @@ Route::post('members/upidig/{id}',                      'Member\CustomMemberCont
 Route::post('members/find',                             'Member\CustomMemberController@find')->name('member.find');
 Route::get( 'members/new',                              'Member\CustomMemberController@new')->name('member.new');
 Route::get( 'members/regional/{id_regional}',           'Member\CustomMemberController@indexRegionais')->name('members.regional');
+Route::get( 'members/selecionar/{id}',                  'Member\CustomMemberController@selecionar')->name('member.selecionar');
 
 Route::resource('members',      'Member\MemberController');
 

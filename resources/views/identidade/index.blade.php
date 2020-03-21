@@ -30,7 +30,7 @@
                         {{substr($identidade->igreja, 0,40)}}
                     </td>
 					<td style='vertical-align: middle;' class="text-right">
-					    <a class="btn btn-primary" href="{{ route('identidades.show', $identidade->id) }}"><i class="fas fa-chevron-right"></i></a>
+					    <a class="btn btn-light list-group-item-action text-{{$classColor ?? 'success'}}" href="{{ route('identidades.show', $identidade->id) }}"><i class="fas fa-chevron-right"></i></a>
 					</td>
 				</tr>
 				@endforeach

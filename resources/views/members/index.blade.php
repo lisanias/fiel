@@ -19,7 +19,7 @@
             <div class="card-header"><h2 class="text-primary">{{__('Lista de obreiros')}} @isset($nome_regional) - {{$nome_regional}}@endisset</h2></div>
             <div class="card-body">
 
-				<table class="table table-hover table-borderless" style='line-height: 1.2;'>
+				<table class="table table-hover table-borderless mb-0" style='line-height: 1.2;'>
 				  
 				  <tbody>
 				    @foreach($members as $member)
