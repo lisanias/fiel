@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Member;
 use App\Igreja;
+use App\Identidade;
+use App\Regional;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,9 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $members =  Member::all();
-        $igrejas =  Igreja::all();
+        $members =  Member::all()->count();
+        $igrejas =  Igreja::all()->count();
+        $identidades = Identidade::orderBy('created_at', 'DESC', SORT_REGULAR, true)
+            ->where('validade', '>=', now())
+            ->count();
         $nivers = Member::MonthBirthdays()->get();
-        return view('home', compact('members', 'igrejas', 'nivers'));
+        $regionais = Regional::all()->count();
+        return view('home.home', compact('members', 'igrejas', 'nivers', 'identidades', 'regionais'));
     }
 }
