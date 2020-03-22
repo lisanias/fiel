@@ -202,7 +202,7 @@
 				{{Str::upper($identidade->cargo)}}
 			</div>
 			<div class="preencher l2 ordenacao">
-				{{$identidade->dataOrdenacao->format('d/m/Y')}}
+				{{$identidade->data_ordenacao->format('d/m/Y')}}
 			</div>
 			<div class="preencher l2 identidade">
 				{{$identidade->rg}}
@@ -211,7 +211,7 @@
 				{{$identidade->validade->format('m/Y')}}
 			</div>
 			<div class="preencher igreja">
-				{{ Str::upper($identidade->igreja) }}
+				{{ Str::upper($identidade->igreja_nome) }}
 			</div>
 			<div class="preencher emissao">
 				<p>
@@ -228,16 +228,16 @@
 						{{str_pad($identidade->member->id, 4, "0", STR_PAD_LEFT)}}
 						{{$identidade->created_at->format('dmY')}}
 						{{$identidade->updated_at->format('dmY')}}
-						@isset($identidade->dataImpressao){{  $identidade->dataImpressao->format('dmYHms') }} @else 00000000 @endisset
+						@isset($identidade->data_impressao){{  $identidade->data_impressao->format('dmYHms') }} @else 00000000 @endisset
 					</small>
 				</h4>
 				<table>
 					<tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper(mb_strimwidth($identidade->nome, 0, 32, ''))}}</strong></td></tr>
 					<tr><td class="t-a-r">Titulo</td><td><strong>{{Str::upper($identidade->cargo)}}</strong></td></tr>
-					<tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->dataOrdenacao->format('d/m/Y')}}</td></tr>
+					<tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->data_ordenacao->format('d/m/Y')}}</td></tr>
 					<tr><td class="t-a-r">Identidade</td><td>{{$identidade->rg}}</td></tr>
 					<tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
-					<tr><td class="t-a-r">Igreja</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja, 0, 34, '')) }}</td></tr>
+					<tr><td class="t-a-r">Igreja</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja_nome, 0, 34, '')) }}</td></tr>
 				</table>
 			</div>
 			<div class="texto rodape" style="text-align:center;">

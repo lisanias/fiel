@@ -25,7 +25,7 @@
                     <a class="btn btn-info" href="{{route('igrejas.show', $identidade->member->igreja->id)}}"><i class="fas fa-church mr-2"></i>Igreja</a>
                 @endif
                 <a class="btn btn-info" href="{{route('identidades.index')}}"><i class="fas fa-list mr-2"></i>Listar</a>
-                @if(!$identidade->dataImpressao)
+                @if(!$identidade->data_impressao)
                 <a class="btn btn-success" href="{{route('identidades.show', $identidade->id)}}"><i class="fas fa-check mr-2"></i>Visualizar</a>
                 @endif
             </div>
@@ -37,7 +37,7 @@
                 {{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}
                 {{$identidade->created_at->format('dmY')}}
                 {{$identidade->updated_at->format('dmY')}}
-                @isset($identidade->dataImpressao){{  $identidade->dataImpressao->format('dmYHms') }} @else 00000000 @endisset
+                @isset($identidade->data_impressao){{  $identidade->data_impressao->format('dmYHms') }} @else 00000000 @endisset
             </p>
 
             <!-- Formulário de edição de dados da ID Ministerial -->
@@ -90,7 +90,7 @@
                             name="igreja"
                             type="text" 
                             class="form-control @error('igreja') is-invalid @enderror"
-                            value=" {{old('igreja') ?? $identidade->igreja}} "
+                            value=" {{old('igreja') ?? $identidade->igreja_nome}} "
                         >
 
                         @error('igreja')
