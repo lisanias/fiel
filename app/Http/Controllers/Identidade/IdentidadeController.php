@@ -135,7 +135,7 @@ class IdentidadeController extends Controller
         $identidade = Identidade::find($id);
 
         // Verifica se ja foi impresso - não alterar IDs que foram impressas
-        if($identidade->dataImpressao){
+        if($identidade->data_impressao){
             return redirect()
                 ->route('identidades.show', $id)
                 ->with(['alert'=>__('Não é possivel alterar uma Identidade Ministerial que já foi impressa'), 'alert_type'=>'info']);
@@ -176,7 +176,7 @@ class IdentidadeController extends Controller
     {
         //$identidade = Identidade::find($id);
         $identidade = Identidade::find($id);
-        $identidade->dataImpressao = now();
+        $identidade->data_impressao = now();
         $identidade->save();
 
         return view('print.id', compact('identidade'));

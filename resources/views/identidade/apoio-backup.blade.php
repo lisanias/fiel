@@ -134,7 +134,7 @@
         {{$identidade->cargo}}
     </div>
     <div class="preencher l2 ordenacao">
-        {{$identidade->dataOrdenacao->format('d/m/Y')}}
+        {{$identidade->data_ordenacao->format('d/m/Y')}}
     </div>
     <div class="preencher l2 identidade">
         {{$identidade->rg}}
@@ -143,7 +143,7 @@
         {{$identidade->validade->format('m/Y')}}
     </div>
     <div class="preencher igreja">
-        {{ Str::upper($identidade->igreja) }}
+        {{ Str::upper($identidade->igreja_nome) }}
     </div>
     <div class="preencher emissao">
         {{$identidade->member_id}}|{{$identidade->id}}

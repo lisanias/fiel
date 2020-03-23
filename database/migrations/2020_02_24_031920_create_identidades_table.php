@@ -22,9 +22,9 @@ class CreateIdentidadesTable extends Migration
             $table->string('cargo');
             $table->string('nome');
             $table->string('rg')->nullable()->default(null);
-            $table->string('igreja')->nullable()->default(null);
-            $table->dateTime('dataOrdenacao')->nullable()->default(null);
-            $table->dateTime('dataImpressao')->nullable()->default(null);
+            $table->string('igreja_nome')->nullable()->default(null);
+            $table->dateTime('data_ordenacao')->nullable()->default(null);
+            $table->dateTime('data_impressao')->nullable()->default(null);
             $table->longText('obs')->nullable()->default(null);
             
             $table->timestamps();
