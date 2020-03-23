@@ -115,7 +115,11 @@
 								{{__('Data de Filiação')}}
 							</div>
 							<div class="field w75">
-								{!! $member->data_filiacao ? $member->data_filiacao->format('d-m-Y') : '<i class="fas fa-ellipsis-h text-warning"></i>' !!}
+								@isset($member->data_filiacao)
+									{{$member->data_filiacao->format('d-m-Y')}}
+									@else
+									<i class="fas fa-ellipsis-h text-warning"></i>
+								@endisset
 							</div>
 						</div>
 
