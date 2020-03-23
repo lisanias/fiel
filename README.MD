@@ -10,3 +10,8 @@ www.igrejasfiel.com.br
 ### VISÃO GERAL
 Administrar e gerir obreiros e igrejas filiadas. Emitir identidades ministeriais dos obreiros da Fiel.
 
+### Funcionalidades
+* Administrar Igrejas filiadas.
+* Administrar Obreiros filiados.
+* Administrar Identidades Ministeriais.
+* Administrar Regionais.
