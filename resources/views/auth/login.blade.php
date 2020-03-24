@@ -66,6 +66,12 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer text-center">
+                    <small>
+                        Se precisar acessar o programa antigo para tirar alguma dúvida use este 
+                        <a href="http://webig.com.br/fiel/login.asp">link</a> 
+                    </small>
+                </div>
             </div>
         </div>
     </div>
