@@ -16,7 +16,7 @@
     <div class="card-body">
       <h5 class="display-3">{{$regional->nome}}</h5>
       <h5 class="display-5">{{$lider->titulo??'Bispo'}} {{$lider->nome??' não cadastrado!'}} <br>
-       <span class="small">{{$lider->email}}</span> </h5>
+       <span class="small">{{$lider->email??''}}</span> </h5>
       <p class="card-text m-5">{{$regional->descricao}}</p>
       <p class="card-text m-5 small">
           Regional nº {{$regional->id}} | 

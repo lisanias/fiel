@@ -58,18 +58,20 @@ function formatar(mascara, documento){
 </div>
 
 <!-- Regional -->
+@if(isset($regionais))
 <div class="form-group">
+    
 	<?php $invalid = ($errors->has("regional_id")?'is-invalid':'') ?>
 	{!! Form::label('regional_id',__('Regional')) !!} 
 	{!! Form::select('regional_id', $regionais, null, [
 		'class' => 'form-control '.$invalid,
-		'placeholder' => 'Selecione ...'
-		]) !!}
-						
+		'placeholder' =>  $regionaisPlaceHolder
+        ]) !!}
+				
 	@error('regional_id')
 		<div class="invalid-feedback">{{ $message }}</div>
 	@enderror
-</div>
+@endif
 
 <!-- email -->
 <div class="form-group">
@@ -166,7 +168,7 @@ function formatar(mascara, documento){
 	{!! Form::label('igreja_id',__('Igreja')) !!}
 	{!! Form::select('igreja_id', $igrejas, null, [
 		'class' => 'form-control '.$invalid,
-		'placeholder' => 'Selecione ...'
+		'placeholder' => $igrejasPlaceHolder
 		]) !!}
 						
 	@error('igreja_id')

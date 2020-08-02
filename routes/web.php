@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/', 'Auth\LoginController@index')->name('login');
+/**Route::get('/', function () {
     return view('auth.login');
-});
+});*/
 
 Auth::routes();
 
@@ -59,3 +59,6 @@ Route::resource('identidades',      'Identidade\IdentidadeController');
 
 /** Regionais */
 Route::resource('regionais', 'Regional\RegionalController');
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

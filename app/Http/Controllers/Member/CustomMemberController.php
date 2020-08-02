@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\Controller;
 use App\Igreja;
 use App\Member;
+use App\Regional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
@@ -115,18 +116,13 @@ class CustomMemberController extends Controller
 	 */
 	public function new(Request $request) 
     {		
-		$igrejas = Igreja::get()->pluck('NomeCidade', 'id');
-		
-		return view('members.create', compact('igrejas'));
-		
-		/*
-		 * Modelo de return passando dados:
-		 * 
-		return redirect()
-                ->route( 'members.show', $member->id )
-				->with(['alert'=>'Obreiro atualizado!', 'alert_type'=>'success']);
-		*/
-	}
+            $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
+            $regionais = Regional::get()->pluck('NomeCidade', 'id');
+            $igrejasPlaceHolder = $igrejas->isEmpty() ? "Nenhuma igreja cadastrada" : "Selecione...";
+            $regionaisPlaceHolder = $regionais->isEmpty() ? "Nenhuma regional cadastrada" : "Selecione...";
+            
+            return view('members.create', compact('igrejas', 'regionais', "igrejasPlaceHolder", 'regionaisPlaceHolder'));
+    }
 	
 	public function aniversariantes($mes = null)
     {

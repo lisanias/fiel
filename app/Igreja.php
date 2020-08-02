@@ -13,23 +13,23 @@ class Igreja extends Model
     ];
 
     public function getNomeCidadeAttribute()	 	 
-		{			
-			$nome = $this->nome;
-			if (!$this->addresses->isEmpty()) {
-				$cidade = $this->addresses()->get()->first()->cidade;
-				$uf = $this->addresses()->get()->first()->uf;
-			} else {
-				$cidade = '________';
-				$uf = '___';
-			}
-			
-			return($nome.' — '.$cidade.'-'.$uf);
-		}
+    {			
+        $nome = $this->nome;
+        if (!$this->addresses->isEmpty()) {
+                $cidade = $this->addresses()->get()->first()->cidade;
+                $uf = $this->addresses()->get()->first()->uf;
+        } else {
+                $cidade = '________';
+                $uf = '___';
+        }
 
-	public function member()
-	{
-		return $this->hasMany('App\Member');
-	}
+        return($nome.' — '.$cidade.'-'.$uf);
+    }
+
+    public function member()
+    {
+        return $this->hasMany('App\Member');
+    }
 
 	public function addresses()
     {

@@ -16,7 +16,17 @@ class Regional extends Model
      *
      * @var string
      */
-    protected $table = 'regionais';
+    public $table = 'regionais';
+    
+    public function getNomeCidadeAttribute()	 	 
+    {			
+        $nome = $this->nome;
+        $cidade = $this->cidade ? $this->cidade : '_____';
+        $separador = $this->cidade & $this->uf ? " - ": "";
+        $uf = $this->uf ? $this->uf : '';
+
+        return($nome.' (' . $cidade . $separador . $uf . ")");
+    }
 
     public function membros()
 	{
