@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'Auth\LoginController@index')->name('login');
+Route::get('/login', 'Auth\LoginController@index');
 /**Route::get('/', function () {
     return view('auth.login');
 });*/
