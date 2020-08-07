@@ -105,9 +105,11 @@ class MemberController extends Controller
  
         $regionais = Regional::get()->pluck('nome', 'id');
         $member = Member::find($id);
-        $igrejas = Igreja::get()->pluck('NomeCidade', 'id');        
+        $igrejas = Igreja::get()->pluck('NomeCidade', 'id');
+        $igrejasPlaceHolder = $igrejas->isEmpty() ? "Nenhuma igreja cadastrada" : "Selecione...";
+        $regionaisPlaceHolder = $regionais->isEmpty() ? "Nenhuma regional cadastrada" : "Selecione...";   
 
-        return view('members.edit', compact('member', 'igrejas', 'regionais'));
+        return view('members.edit', compact('member', 'igrejas', 'regionais', 'igrejasPlaceHolder', 'regionaisPlaceHolder'));
     }
 
     /**

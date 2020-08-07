@@ -180,12 +180,14 @@ class CustomMemberController extends Controller
 		$member = Member::find($id);
 		
         // colocar o membro em uma section para voltar para ele depois de alguma ação
-        session()->put('last_member', $id);
+        session()->flash('last_member', $id);
 		session()->put('last_member_nome', $member->nome);  
 		
 		if(session()->get('last_igreja')){
+			$last_igreja = session()->get('last_igreja');
+			session()->forget("last_igreja");
 		return redirect()
-                ->route( 'igrejas.show', session()->get('last_igreja') )
+                ->route( 'igrejas.show', $last_igreja )
 				->with(['alert'=>'Obreiro selecionado!', 'alert_type'=>'success']);
 		} else 	{
 		return redirect()

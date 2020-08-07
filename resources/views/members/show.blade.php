@@ -137,7 +137,6 @@
 
 							<a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary shadow-sm">
 								<i class="fas fa-edit fa-sm text-white-50"></i>
-								{{__('Editar')}}
 							</a>
 							
 							@if($igreja)
@@ -145,14 +144,13 @@
 									<i class="fas fa-fw fa-church fa-sm text-white-50"></i>
 									{{__('Igreja')}}
 								</a>
-							@else
+							@elseif(session()->pull('last_igreja'))
 								<a href="{{ route('member.selecionar', $member->id) }}" class="btn btn-success shadow-sm ml-1">
-									<i class="fas fa-edit fa-sm text-white-50"></i>
-									{{__('Selecionar membro')}}
+									<i class="fas fa-check-circle fa-sm text-white-50"></i>
 								</a>
 							@endif
 
-							<div class="ml-1">
+							<div class="ml-1 float-rightt">
 								<form id='apagar' method="post" action="{!! route('members.destroy', $member->id) !!}"> 
 									{!! Form::token() !!}
 									<input type="hidden" name="_method" value="DELETE">
@@ -300,7 +298,7 @@
 								</td>
 								<td style='vertical-align: middle;'>
 									<small class="">Criado em:</small><br> 
-									{{ $identidade->created_at->format('d/m/Y') }}
+									{{ ($identidade->created_at) ? $identidade->created_at->format('d/m/Y') : "" }}
 								</td>
 								<td style='vertical-align: middle;' class="text-right">
 									<a class="btn btn-light" href="{{ route('identidades.show', $identidade->id) }}">
@@ -321,8 +319,12 @@
 	</div>
 			
 
+
 	<div class="card-footer text-muted">
-		<p class="small text-right">Ficha criada em <strong>{{ $member->created_at->format('d-m-Y [H:m]') }}</strong> e atualizada pela ultima vez em <strong>{{ $member->updated_at->format('d-m-Y [H:m]') }}</strong></p>
+		<p class="small text-right">
+			@if($member->created_at) Ficha criada em <strong>{{ $member->created_at->format('d/m/Y') }}</strong>@endif
+			@if($member->updated_at) e atualizada pela ultima vez em <strong>{{ $member->updated_at->format('d-m-Y [H:m]') }}</strong>@endif
+		</p>
 	</div>
 
 @endsection
