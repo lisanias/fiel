@@ -9,7 +9,7 @@ class Identidade extends Model
     protected $dates = ['created_at', 'updated_at', 'validade', 'data_ordenacao', 'data_impressao'];
 
     protected $fillable = [
-        'member_id', 'nome', 'validade', 'cargo', 'rg', 'igreja', 'data_ordenacao', 'obs',
+        'member_id', 'nome', 'validade', 'cargo', 'rg', 'igreja_nome', 'data_ordenacao', 'obs',
     ];
     
     public function member()

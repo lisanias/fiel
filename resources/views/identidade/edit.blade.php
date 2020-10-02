@@ -86,8 +86,8 @@
                         <label for="igreja">Igreja</label>
                         
                         <input 
-                            id="igreja"
-                            name="igreja"
+                            id="igreja_nome"
+                            name="igreja_nome"
                             type="text" 
                             class="form-control @error('igreja') is-invalid @enderror"
                             value=" {{old('igreja') ?? $identidade->igreja_nome}} "

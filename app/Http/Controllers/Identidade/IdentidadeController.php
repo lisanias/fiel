@@ -79,6 +79,7 @@ class IdentidadeController extends Controller
     public function show($id)
     {
         $identidade = Identidade::find($id);
+        
         if(!isset($identidade)){
             return redirect()
                 ->route('identidades.index')
@@ -126,9 +127,9 @@ class IdentidadeController extends Controller
     {
         // Valida os campos
         $validatedData = $request->validate([
-            'nome' => 'required|max:32|string',
+            'nome' => 'required|max:45|string',
             'cargo' => 'required|max:10',
-            'igreja' => 'required|max:34|string',
+            'igreja_nome' => 'required|max:34|string',
         ]);
 
         // Busca a Identidade Ministerial pelo id
