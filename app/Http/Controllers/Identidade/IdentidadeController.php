@@ -65,6 +65,12 @@ class IdentidadeController extends Controller
      */
     public function store(Request $request)
     {
+        #($member->data_ordenacao)?$member->data_ordenacao:$member->created_at
+        if (!$request->data_ordenacao){
+            return redirect()
+                ->route( 'members.show', $request->member_id )
+                ->with(['alert'=>'Obreiro sem data de ordenação cadastrada! Por favor acrescente ao cadastro a data de ordenação.', 'alert_type'=>'danger']);
+        }
         $identidade = Identidade::create($request->all());
 
         return redirect()->route('identidades.show', $identidade->id);

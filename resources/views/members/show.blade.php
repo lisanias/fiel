@@ -267,7 +267,7 @@
 								{!! Form::hidden('nome', ($member->nome_abreviado)?$member->nome_abreviado:$member->nome) !!}
 								{!! Form::hidden('rg', $member->rg) !!}
 								{!! Form::hidden('igreja_nome', ($igreja->nome_abreviado)?$igreja->nome_abreviado:$igreja->igreja_nome) !!}
-								{!! Form::hidden('data_ordenacao', now()) !!}
+								{!! Form::hidden('data_ordenacao', $member->data_ordenacao ) !!}
 								<button type="submit" class='btn btn-success'>
 									<i class="fas fa-plus text-white-50"></i>
 									{{__('Adicionar')}}

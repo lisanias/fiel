@@ -1,0 +1,67 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\upInside\\codigoaberto"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\upInside\\phptips"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\upInside\\fsphp"
+		},
+		{
+			"path": "..\\..\\..\\..\\webigsis"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\_aulas\\flexbox"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\exemplos\\budget"
+		},
+		{
+			"path": "..\\..\\..\\..\\flamesis"
+		},
+		{
+			"path": "..\\..\\..\\..\\didake"
+		}
+	],
+	"settings": {
+		"sqltools.connections": [
+			{
+				"database": "auth",
+				"driver": "MariaDB",
+				"mysqlOptions": {
+					"authProtocol": "default"
+				},
+				"name": "localhost",
+				"port": 3306,
+				"previewLimit": 50,
+				"server": "localhost",
+				"username": "root",
+				"password": ""
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Listen for XDebug",
+				"type": "php",
+				"request": "launch",
+				"port": 9000
+			},
+			{
+				"name": "Launch currently open script",
+				"type": "php",
+				"request": "launch",
+				"program": "${file}",
+				"cwd": "${fileDirname}",
+				"port": 9000
+			}
+		]
+	}
+}
