@@ -33,6 +33,7 @@
 			font-family: 'Roboto Condensed', sans-serif;
 			font-weight: 400;
 		}
+		h2 {padding-bottom: 2em;}
 		.digitos { 
 			font-size: 8pt; 
 			font-family: 'Istok+Web', sans-serif;
@@ -56,61 +57,43 @@
 			    box-shadow: 0;
 			  }
 		}
-		.id_ministerial { 
-			width: 793; height: 289px; 
-		}
 		.preencher {
 			position: absolute; 
   			display: block;
   			text-transform: uppercase;
-  			/*background-color: silver;*/
+		}
+		.desenho_base {
+			margin-top: 14mm;
+			margin-left: 18mm;
+			width: 170mm;
+			background-color: red;
+		}
+		.id_ministerial { 
+			width: 170mm; 
+			height: 58.643mm; 
+			margin-top: 14mm;
+			margin-left: 18mm;
 		}
 		.principal {			
 			#font-size: 11pt; 
   			font-weight: 700;
 		}
-		.numero {			
-			left: 90mm;
-  			top: 25.9mm;
-  			width: 10mm;
-			
-			font-weight: 900;
-			font-size: 8.4pt;
+		.titulo {			
+			left: 25.5mm;
+  			top: 40mm;
+			width: 70mm;
 
-  			text-align: right;
-  			color: #247c50;
-		}
-		.titulo {
-            line-height: 1.053;
-            left: 16mm;
-            top: 46mm;
-             width: 30mm;
-            /* text-align: right; */
-            font-size: 11pt;
-			
-			/*left: 26mm;
-  			top: 58mm;
-			width: 10mm;*/
-			  
-  			text-align: left;
 			font-size: 12pt;
 			font-family: 'Roboto', sans-serif;
 			font-weight: 900;
-			  
-  			-webkit-transform: rotate(-90deg);	
-			-moz-transform: rotate(-90deg);
-			-ms-transform: rotate(-90deg);
-			-o-transform: rotate(-90deg);
-			transform: rotate(-90deg);
-  			color: rgba(255, 255, 255, 1);
 		}
 		.nome {			
-			left: 37.5mm;
-  			top: 44.5mm;
-  			width: 63mm;
+			left: 25.5mm;
+  			top: 51.5mm;
+  			width: 74mm;
 			
 			font-family: 'Roboto', sans-serif;			
-			font-size: 9pt;
+			font-size: 0.8em;
 			font-weight: 900;
 			
   			text-align: left;
@@ -120,33 +103,40 @@
 		.l2 {			
 			font-size: 7pt; 
   			font-weight: 700;
-  			top: 55.5mm;
+  			top: 58.5mm;
 		}
 		.ordenacao {			
-			left: 37.5mm;
-  			width: 17mm;
+			left: 25.5mm;
+  			width: 19mm;
   			text-align: left;
   			white-space: nowrap;
   			overflow: hidden;
 		}
 		.identidade {			
-			left: 56mm;
-  			width: 33mm;
+			left: 46.2mm;
+  			width: 21mm;
   			text-align: left;
   			white-space: nowrap;
   			overflow: hidden;
 		}
+		.numero {			
+			left: 68.4mm;
+  			width: 15mm;
+			text-align: left;			
+			white-space: nowrap;
+  			overflow: hidden;
+		}
 		.validade {			
-			left: 90.2mm;
+			left: 86.8mm;
   			width: 12mm;
   			text-align: left;
   			white-space: nowrap;
   			overflow: hidden;
 		}
 		.igreja {  			
-  			top: 63mm;		
-			left: 37.5mm;
-  			width: 63.3mm;
+  			top: 64.5mm;		
+			left: 25.5mm;
+  			width: 70mm;
 
 			font-size: 7.55pt; 
   			font-weight: 700;
@@ -156,18 +146,18 @@
   			overflow: hidden;
 		}
 		.emissao {
-  			top: 58mm;		
-			left: 110mm;
-  			width: 12mm;
+  			top: 19.5mm;		
+			left: 114mm;
+  			width: 15mm;
 			
-			font-family: 'Open Sans Condensed', sans-serif;			
-  			font-weight: 300;	
+			font-family: 'Open Sans Condensed', sans-serif;
 			font-size: 8pt; 
+			line-height: 0.9;
 
   			text-align: center;
   			white-space: nowrap;
   			overflow: hidden;
-  			color: #fff;
+  			color: grey;
 		}
 
 		.margin_0 {margin: 0px; padding: 0px}
@@ -184,10 +174,12 @@
 		}
 
 		.rodape{
-			margin-top: 120mm;
+			margin-top: 90mm;
 		}
 
 		.a4_vertical_mm { width: 210mm; height: 297mm; display: block; position: absolute;}
+
+		.id { color: #fff;}
 
 	</style>
 </head>
@@ -195,55 +187,48 @@
 	<page size="A4">
 		<div class="a4_vertical_mm">
 		
-
-			<div class="margin_0">
-				<img src="{{ asset('images/id_ministerial.png') }}" class="id_ministerial"  alt="">
-			</div>
-			<div class="preencher principal numero">
-				{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}
-			</div>
-			<div class="preencher principal nome">
-				{{Str::upper($identidade->nome)}}
-			</div>
-			<div class="preencher titulo">
-				{{Str::upper($identidade->cargo)}}
-			</div>
-			<div class="preencher l2 ordenacao">
-				{{$identidade->data_ordenacao->format('d/m/Y')}}
-			</div>
-			<div class="preencher l2 identidade">
-				{{$identidade->rg}}
-			</div>
-			<div class="preencher l2 validade">
-				{{$identidade->validade->format('m/Y')}}
-			</div>
-			<div class="preencher igreja">
-				{{ Str::upper($identidade->igreja_nome) }}
-			</div>
-			<div class="preencher emissao">
-				<p>
-					{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}{{str_pad($identidade->member->id, 4, "0", STR_PAD_LEFT)}}
-				</p>
+			<div class="id">
+				<div class="margin_0">
+					<img src="{{ asset('images/id_ministerial_2022.png') }}" class="id_ministerial"  alt="">
+				</div>
+				<div class="preencher principal nome">
+					{{Str::upper($identidade->nome)}}
+				</div>
+				<div class="preencher titulo">
+					{{Str::upper($identidade->cargo)}}
+				</div>
+				<div class="preencher l2 ordenacao">
+					{{$identidade->data_ordenacao->format('d/m/Y')}}
+				</div>
+				<div class="preencher l2 identidade">
+					{{$identidade->rg}}
+				</div>
+				<div class="preencher l2 numero">
+					{{str_pad($identidade->id, 5, "0", STR_PAD_LEFT)}}
+				</div>
+				<div class="preencher l2 validade">
+					{{$identidade->validade->format('m/Y')}}
+				</div>
+				<div class="preencher igreja">
+					{{ Str::upper($identidade->igreja_nome) }}
+				</div>
+				<div class="preencher emissao">
+					{{str_pad($identidade->id, 6, "0", STR_PAD_LEFT)}}<br />
+					{{str_pad($identidade->member->id, 6, "0", STR_PAD_LEFT)}}
+				</div>
 			</div>
 			<div class="texto">
 				<h2>Impressão de identidade ministerial</h2>
-				<h4>
-					{{Str::upper($identidade->member->nome??'')}}
-					<br>
-					<small class="digitos">
-						{{str_pad($identidade->id, 5, "0", STR_PAD_LEFT)}}
-						{{str_pad($identidade->member->id, 4, "0", STR_PAD_LEFT)}}
-						{{$identidade->created_at->format('dmY')}}
-						{{$identidade->updated_at->format('dmY')}}
-						@isset($identidade->data_impressao){{  $identidade->data_impressao->format('dmYHms') }} @else 00000000 @endisset
-					</small>
-				</h4>
 				<table>
+					<tr><td class="t-a-r">Id. Min. Número</td><td><strong>{{str_pad($identidade->id, 5, "0", STR_PAD_LEFT)}}</strong></td></tr>
 					<tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper(mb_strimwidth($identidade->nome, 0, 32, ''))}}</strong></td></tr>
+					<tr><td class="t-a-r">Membro Número</td><td>{{str_pad($identidade->member->id, 5, "0", STR_PAD_LEFT)}}</td></tr>
 					<tr><td class="t-a-r">Titulo</td><td><strong>{{Str::upper($identidade->cargo)}}</strong></td></tr>
 					<tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->data_ordenacao->format('d/m/Y')}}</td></tr>
-					<tr><td class="t-a-r">Identidade</td><td>{{$identidade->rg}}</td></tr>
+					<tr><td class="t-a-r">Número de R.G.</td><td>{{$identidade->rg}}</td></tr>
 					<tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
+					<tr><td class="t-a-r">Data emissão</td><td>{{$identidade->created_at->format('d/m/Y')}}</td></tr>
+					<tr><td class="t-a-r">Impresso em</td><td>@isset($identidade->data_impressao){{  $identidade->data_impressao->format('d/m/Y H:i') }} @else  @endisset</td></tr>
 					<tr><td class="t-a-r">Igreja</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja_nome, 0, 34, '')) }}</td></tr>
 				</table>
 			</div>

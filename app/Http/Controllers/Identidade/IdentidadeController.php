@@ -186,7 +186,7 @@ class IdentidadeController extends Controller
         $identidade->data_impressao = now();
         $identidade->save();
 
-        return view('print.id', compact('identidade'));
+        return view('print.idV2', compact('identidade'));
     }   
 
     /**
