@@ -65,8 +65,7 @@
   			text-transform: uppercase;
   			/*background-color: silver;*/
 		}
-		.principal {			
-			#font-size: 11pt; 
+		.principal {
   			font-weight: 700;
 		}
 		.numero {			

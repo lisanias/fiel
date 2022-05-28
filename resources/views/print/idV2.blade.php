@@ -74,8 +74,7 @@
 			margin-top: 14mm;
 			margin-left: 18mm;
 		}
-		.principal {			
-			#font-size: 11pt; 
+		.principal {
   			font-weight: 700;
 		}
 		.titulo {			
