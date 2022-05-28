@@ -13,107 +13,82 @@
             display: block;
             position: absolute;
             font-family: 'Roboto Condensed', sans-serif;
-            width: 400px; height: 298.66px;
+            color: #fff;
         }
         p { 
-            font-size: 11pt;          
+            font-size: 1em;          
             font-weight: 400;
         }
         .id_ministerial { 
-            max-width: 400px;
-            max-height: 291px;
-        }
+			width: 170mm; 
+			height: 58.643mm; 
+		}
         .preencher {
             position: absolute; 
             display: block;
-            color: #000;
             text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
             font-style: normal;
             font-weight: 400;
-        }
-        .principal {			
-            font-size: 11pt; 
-            font-weight: 700;
-        }
-        .numero {			
-            left: 85mm;
-            top: 13.6mm;
-            width: 15mm;
-            
-            font-weight: 900;        
-            font-size: 10.6pt;
-
-            text-align: right;
-            font-style: normal;
-            color: #247c50;
-        }
-        .titulo {			
-            left: 0mm;
-            top: 41.5mm;
-            width: 35mm;
-            text-align: left;
-            -webkit-transform: rotate(-90deg);	
-            -moz-transform: rotate(-90deg);
-            -ms-transform: rotate(-90deg);
-            -o-transform: rotate(-90deg);
-            transform: rotate(-90deg);
-            color: #fff;            
-            /* font-family: 'Roboto'; */
-            font-style: normal;
-            font-weight: 900; 
-            font-size: 14pt;
-        }
-        .nome {			
-            left: 24mm;
-            top: 36.2mm;
-            width: 75mm;
-            
-			font-family: 'Roboto', sans-serif;            
-			font-weight: 900;
-            font-size: 10.75pt;
+            font-size: 0.78em;
 
             text-align: left;
             white-space: nowrap;
             overflow: hidden;
+        }
+        .principal {
+            font-weight: 700;
+        }
+        .titulo {	
+            left: 7.5mm;
+  			top: 24.5mm;
+			width: 70mm;
+
+			font-size: 1.12em;
+			font-weight: 900;            
+        }
+        .nome {			
+            left: 7.5mm;
+            top: 36.6mm;
+            width: 70mm;
         }
         .l2 {			
             font-size: 8.5pt;
-            top: 49.4mm;
-            font-weight: 700;
+            top: 44mm;
         }
         .ordenacao {			
-            left: 24mm; /* 37.5*/
-            width: 20mm;
-            text-align: left;
-            white-space: nowrap;
-            overflow: hidden;
+            left: 7.5mm; 
+            width: 19mm;
         }
         .identidade {			
-            left: 46.5mm;
-            width: 39mm;
-            text-align: left;
-            white-space: nowrap;
-            overflow: hidden;
+            left: 28.3mm;
+            width: 21mm;
+        }
+        .numero {			
+            left: 50.4mm;
+            width: 14mm;
         }
         .validade {			
-            left: 88mm;
-            width: 13.5mm;
-            text-align: left;
-            white-space: nowrap;
-            overflow: hidden;
+            left: 69mm;
+            width: 13mm;
         }
         .igreja { 
-            top: 58.4mm;		
-            left: 24mm;
-            width: 75.5mm;
-
-            font-weight: 700;	
-			font-size: 9pt; 
-
-            text-align: left;
-            white-space: nowrap;
-            overflow: hidden;
+            top: 50mm;		
+            left: 7.5mm;
+            width: 70mm;
         }
+        .emissao {
+  			top: 6mm;		
+			left: 97mm;
+  			width: 15mm;
+			
+			font-family: 'Open Sans Condensed', sans-serif;
+			font-size: 8pt; 
+			line-height: 0.9;
+
+  			text-align: center;
+  			color: grey;
+		}
 		.t-a-r{
 			text-align: right;
 			padding: 5px 20px;
@@ -133,14 +108,10 @@
         
         @if ($identidade->validade < now())
             <div class="card-body">
-                <div class="alert alert-dark mb-0 text-center" role="alert">
+                <div class="alert alert-danger mb-0 text-center" role="alert">
                     <h1><i class="fas fa-exclamation-circle"></i></h1>
                     <p class="mb-0">
-                        @if ($identidade->validade < now() && $identidade->ignorar_renovacao == NULL)
                         Identidade Ministerial Vencida
-                        @else
-                        Identidade Ministeria Antiga
-                        @endif
                     </p>                    
                 </div>
             </div>
@@ -149,16 +120,13 @@
 
             <div class="envelope">
                 <div class="margin_0">
-                    <img src="{{ asset('images/id_ministerial.gif') }}" class="id_ministerial">
-                </div>
-                <div class="preencher principal numero">
-                    {{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}
-                </div>
-                <div class="preencher principal nome">
-                    {{Str::upper($identidade->nome)}}
+                    <img src="{{ asset('images/id_ministerial_2022.png') }}" class="id_ministerial">
                 </div>
                 <div class="preencher titulo">
                     {{$identidade->cargo}}
+                </div>
+                <div class="preencher principal nome">
+                    {{Str::upper($identidade->nome)}}
                 </div>
                 <div class="preencher l2 ordenacao">
                     {{$identidade->data_ordenacao->format('d/m/Y')}}
@@ -166,12 +134,19 @@
                 <div class="preencher l2 identidade">
                     {{$identidade->rg}}
                 </div>
+                <div class="preencher l2 numero">
+                    {{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}
+                </div>
                 <div class="preencher l2 validade">
                     {{$identidade->validade->format('m/Y')}}
                 </div>
                 <div class="preencher igreja">
                     {{ Str::upper($identidade->igreja_nome) }}
                 </div>
+				<div class="preencher emissao">
+					{{str_pad($identidade->id, 6, "0", STR_PAD_LEFT)}}<br />
+					{{str_pad($identidade->member->id, 6, "0", STR_PAD_LEFT)}}
+				</div>
             </div>         
             
         

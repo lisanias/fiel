@@ -35,20 +35,20 @@
 
 					
 					<div class="card-header">
-						<i class="fas fa-id-card-alt"></i> Dados Pessoais
+						<i class="fas fa-id-card-alt"></i> {{__('Dados Pessoais')}} 
 					</div>
 
 					<div class="card-body">
 
 						@if(!$member->nome_abreviado == null)
-							<div class='label'>{{_('Mome Abreviado')}}</div>
+							<div class='label'>{{__('Mome Abreviado')}}</div>
 							<div class="field">{{ $member->nome_abreviado }}</div>
 						@endif
 
 						<div class="d-flex flex-column mb-3">
 							<div class='label'>
 								<i class='fas fa-at'></i>
-								{{_('E-mail')}}
+								{{__('E-mail')}}
 							</div>
 							<div class="field w75">
 								{!! $member->email ? $member->email : "<i class='fas fa-ellipsis-h text-warning'></i>" !!}
@@ -282,9 +282,9 @@
 						
 						<table class="table table-borderless table-hover mb-0" style="line-height: 1.2;">
 				
-							<tbody>
+							<tbody> 
 							@foreach($identidades as $identidade)
-							<tr class='@if($identidade->validade < now()->format('Y-m-a'))bg-danger @else bg-success @endif text-white'>
+							<tr class='@if($identidade->ignorar_renovacao == 1) bg-dark @elseif($identidade->validade < now()->format('Y-m-a')) bg-danger @else bg-success @endif text-white'>
 								<td style='vertical-align: middle;'>
 									<small>{{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}<br></small>
 									<strong class="">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>

@@ -8,6 +8,7 @@ use App\Identidade;
 use App\Igreja;
 use App\Member;
 use PDF;
+use phpDocumentor\Reflection\Types\Null_;
 
 class IdentidadeController extends Controller
 {
@@ -40,10 +41,27 @@ class IdentidadeController extends Controller
     public function vencidas()
     {
         $classColor = 'danger';
-        $listTitle = 'Identidades Ministerias vencidas';
+        $listTitle = 'Identidades Ministerias Esperando Renovação';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
-            ->where('validade', '<', now())
+            ->where('validade', '<', now())->where('ignorar_renovacao', '=', Null)
             ->paginate(10);
+
+        return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
+    }
+
+    /**
+     * Lista as id's ministeriais por ordem decrescente de data de expedição.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function antigas()
+    {
+        $classColor = 'warning';
+        $listTitle = 'Identidades Ministerias ANTIGAS';
+        $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
+            ->where('validade', '<', now())->where('ignorar_renovacao', '=', 1)
+            ->paginate(10);
+            
         return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
     }
 
@@ -65,12 +83,15 @@ class IdentidadeController extends Controller
      */
     public function store(Request $request)
     {
-        #($member->data_ordenacao)?$member->data_ordenacao:$member->created_at
         if (!$request->data_ordenacao){
             return redirect()
                 ->route( 'members.show', $request->member_id )
                 ->with(['alert'=>'Obreiro sem data de ordenação cadastrada! Por favor acrescente ao cadastro a data de ordenação.', 'alert_type'=>'danger']);
         }
+
+        // verificar identidades que estão para revação e marcar como renovadas mudando para '1' o campo 'ignorar_renovaao'
+        $updateRenovacao = Identidade::where('ignorar_renovacao', '=', Null)->where('data_impressao','<>',null)->where('validade','<',now())->update(['ignorar_renovacao' => 1]);
+
         $identidade = Identidade::create($request->all());
 
         return redirect()->route('identidades.show', $identidade->id);
@@ -97,7 +118,12 @@ class IdentidadeController extends Controller
         $member = $identidade->member;
         $igreja = ($member) ? Igreja::find($identidade->member->igreja_id) : '';
         //dd($igreja);
-        return view('identidade.show', compact('identidade', 'member', 'igreja'));
+
+        if($identidade->data_impressao >= "2022-05-26 00:00:00" || $identidade->data_impressao == null){
+            return view('identidade.show2022', compact('identidade', 'member', 'igreja'));
+        } else {
+            return view('identidade.show', compact('identidade', 'member', 'igreja'));
+        }
     }
 
     /**
@@ -183,10 +209,23 @@ class IdentidadeController extends Controller
     {
         //$identidade = Identidade::find($id);
         $identidade = Identidade::find($id);
-        $identidade->data_impressao = now();
-        $identidade->save();
+        if($identidade == null){
+            return redirect()
+                ->route('identidades.index')
+                ->with(['alert'=>"Identidade {$id} não existe", 'alert_type'=>'danger']);
+        }
+        if($identidade->data_impressao == Null){
+            $identidade->data_impressao = now();
+            $identidade->save();
+        }
 
-        return view('print.idV2', compact('identidade'));
+        if($identidade->data_impressao >= "2022-05-26 00:00:00"){
+            return view('print.idV2', compact('identidade'));
+        } else {
+            return view('print.id', compact('identidade'));
+        }
+
+        
     }   
 
     /**

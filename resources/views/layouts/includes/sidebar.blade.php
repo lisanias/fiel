@@ -86,7 +86,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">{{__('IDs Ministeriais')}}</h6>
             <a class="collapse-item" href="{{ route('identidades.index')}}">{{__('Listar')}}</a>
-            <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Vencidas')}}</a>        
+            <a class="collapse-item" href="{{ route('vencidas') }}">{{__('Renovar')}}</a>        
+            <a class="collapse-item" href="{{ route('antigas') }}">{{__('Antigas')}}</a>        
           </div>
         </div>
       </li>

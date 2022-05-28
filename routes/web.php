@@ -53,6 +53,7 @@ Route::resource('members.phones', 'Phone\PhoneController')->only('create', 'stor
 
 /** Identidades */
 Route::get('identidades/vencidas', 'Identidade\IdentidadeController@vencidas')->name('vencidas');
+Route::get('identidades/antigas', 'Identidade\IdentidadeController@antigas')->name('antigas');
 Route::get('identidade/{id}/pdf',      'Identidade\IdentidadeController@pdf')->name('pdf');
 Route::get('identidade/{id}/imprimir',      'Identidade\IdentidadeController@print')->name('imprimir');
 Route::post('identidade/procurar',      'Identidade\IdentidadeController@find')->name('id.find');

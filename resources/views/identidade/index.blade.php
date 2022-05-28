@@ -9,8 +9,8 @@
         </div>
 		<div class="card-body">
 
+			@if($identidades->count()>0)
 			<table class="table table-borderless table-hover mb-0" style="line-height: 1.2;">
-				
 				<tbody>
 				@foreach($identidades as $identidade)
 				<tr>
@@ -37,6 +37,9 @@
 				
 				</tbody>
 			</table>
+            @else
+            <H2 class="text-success" style="padding:10% 0">Não tem {{__($listTitle??'Identidades Ministeriais...')}}</H2>
+            @endif
 			
 		</div>
 		<div class="card-footer text-muted">

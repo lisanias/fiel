@@ -232,8 +232,8 @@
 					<small class="digitos">
 						{{str_pad($identidade->id, 5, "0", STR_PAD_LEFT)}}
 						{{str_pad($identidade->member->id, 4, "0", STR_PAD_LEFT)}}
-						{{$identidade->created_at->format('dmY')}}
-						{{$identidade->updated_at->format('dmY')}}
+						{{$identidade->created_at->format('dmY')}}				
+						@isset($identidade->updated_at){{$identidade->updated_at->format('dmY')}} @else 00000000 @endisset
 						@isset($identidade->data_impressao){{  $identidade->data_impressao->format('dmYHms') }} @else 00000000 @endisset
 					</small>
 				</h4>

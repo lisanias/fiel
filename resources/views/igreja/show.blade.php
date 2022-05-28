@@ -57,7 +57,7 @@
                     <div class="d-flex flex-column">
                         <div class='label'>
                             <i class='fas fa-tag'></i>
-                            {{_('Nome abreviado')}}
+                            {{__('Nome abreviado')}}
                         </div>
                         <div class="field w75 form-text mt-0">
                             <?php
@@ -74,7 +74,7 @@
                     <div class="d-flex flex-column mt-4">
                         <div class='label'>
                             <i class='fas fa-at'></i>
-                            {{_('E-mail')}}
+                            {{__('E-mail')}}
                         </div>
                         <div class="field w75">                
                             {{ $igreja->email ?? ". . ." }}
@@ -84,7 +84,7 @@
                     <div class="d-flex flex-column mt-4">
                         <div class='label'>
                             <i class='fas fa-phone-square'></i>
-                            {{_('Telefone da Igreja')}}
+                            {{__('Telefone da Igreja')}}
                         </div>
                         <div class="field w75">                
                             {{ $igreja->telefone ?? ". . ." }}
@@ -94,7 +94,7 @@
                     <div class="d-flex flex-column mt-4">
                         <div class='label'>
                             <i class="fas fa-user-clock"></i>
-                            {{_('Membro desde')}}
+                            {{__('Membro desde')}}
                         </div>
                         <div class="field w75">                
                             {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
@@ -105,7 +105,7 @@
                     <div class="d-flex flex-column mt-4">
                         <div class='label'>
                             <i class="fas fa-user-clock"></i>
-                            {{_('Pastor presidente:')}}
+                            {{__('Pastor presidente:')}}
                         </div>
                         <div class="field w75">                
                             {{ $pastor->nome }}

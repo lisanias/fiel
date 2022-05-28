@@ -62,12 +62,6 @@
   			display: block;
   			text-transform: uppercase;
 		}
-		.desenho_base {
-			margin-top: 14mm;
-			margin-left: 18mm;
-			width: 170mm;
-			background-color: red;
-		}
 		.id_ministerial { 
 			width: 170mm; 
 			height: 58.643mm; 
