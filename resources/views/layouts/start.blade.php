@@ -109,7 +109,7 @@
         <footer class="footer mt-auto py-3">
             <div class="container">
                 <span class="text-muted">
-                    <small class="d-block mb-3 text-muted">WEBIG &copy; 2014-2020</small>
+                    <small class="d-block mb-3 text-muted">WEBIG &copy; 2014-{{now()->format('Y')}}</small>
                 </span>
             </div>
         </footer>

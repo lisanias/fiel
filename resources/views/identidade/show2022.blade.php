@@ -183,21 +183,35 @@
                     @else 00000000 
                 @endisset
             </p>
-            <div class="jumbotron">
-                <table class="">
-                    <tr><td class="t-a-r">Nome Completo</td><td @if(!$member) class="badge badge-danger"@endif>{{$member->nome ?? 'Não consta no Cadastro de Obreiro' }}</td></tr>
-                    <tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper(mb_strimwidth($identidade->nome, 0, 32, ''))}}</strong></td></tr>
-                    <tr><td class="t-a-r">Titulo</td><td><strong>{{$identidade->cargo}}</strong></td></tr>
-                    <tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->data_ordenacao->format('d/m/Y')}}</td></tr>
-                    <tr><td class="t-a-r">Identidade</td><td>{{$identidade->rg}}</td></tr>
-                    <tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
-                    <tr><td class="t-a-r">Igreja (Impresso)</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja_nome, 0, 34, '')) }}</td></tr>
-                    @if ($igreja)                        
-                        <tr><td class="t-a-r">Igreja (Razao Social)</td><td>{{ Str::upper($igreja->nome) ?? '' }}</td></tr>
-                        <tr><td class="t-a-r">Igreja (Nome Obreviado)</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
-                    @endif
-                </table>
-            </div>
+            <div class="d-xl-flex justify-content-start align-self-stretch">
+                <div class="mr-xl-4 mb-4 p-3 bd-highlight flex-fill border bg-light">
+                    <h3 class="pt-1">{{__('Dados da Identidade Ministerial')}}</h3>
+                    <table class="">
+                        <tr><td class="t-a-r">Id. Min. Número</td><td><strong>{{str_pad($identidade->id, 5, "0", STR_PAD_LEFT)}}</strong></td></tr>
+                        <tr><td class="t-a-r">Nome Impresso</td><td><strong>{{Str::upper(mb_strimwidth($identidade->nome, 0, 32, ''))}}</strong></td></tr>
+                        <tr><td class="t-a-r">Titulo</td><td><strong>{{Str::upper($identidade->cargo)}}</strong></td></tr>
+                        <tr><td class="t-a-r">Data Ordenação</td><td>{{$identidade->data_ordenacao->format('d/m/Y')}}</td></tr>
+                        <tr><td class="t-a-r">Número de R.G.</td><td>{{$identidade->rg}}</td></tr>
+                        <tr><td class="t-a-r">Validade</td><td><strong>{{$identidade->validade->format('m/Y')}}<strong></td></tr>
+                        <tr><td class="t-a-r">Data emissão</td><td>{{$identidade->created_at->format('d/m/Y')}}</td></tr>
+                        <tr><td class="t-a-r">Impresso em</td><td>@isset($identidade->data_impressao){{  $identidade->data_impressao->format('d/m/Y H:i') }} @else  @endisset</td></tr>
+                        <tr><td class="t-a-r">Igreja</td><td>{{ Str::upper(mb_strimwidth($identidade->igreja_nome, 0, 34, '')) }}</td></tr>
+                    </table>
+                </div>
+
+                <div class="ml-xl-4 mb-4 p-3 bd-highlight flex-fill border bg-light">
+                    <h3 class="pt-1">{{__('Dados do Obreiro e Igreja')}}</h3>
+                    <table>
+                        <tr><td class="t-a-r">Nome Completo</td><td @if(!$member) class="badge badge-danger"@endif>{{$member->nome ?? 'Não consta no Cadastro de Obreiro' }}</td></tr>
+                        <tr><td class="t-a-r">Membro Número</td><td>{{str_pad($identidade->member->id, 5, "0", STR_PAD_LEFT)}}</td></tr>
+                        @if ($igreja)                        
+                            <tr><td class="t-a-r">Igreja</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
+                            <tr><td class="t-a-r">Razao Social</td><td>{{ Str::upper($igreja->nome) ?? '' }}</td></tr>
+                            <tr><td class="t-a-r">Membro desde</td><td>{{ $igreja->membro_desde->format('d-m-Y') ?? $igreja->created_at }}</td></tr>
+                        @endif                    
+                    </table>
+                </div>
+            </div> 
         </div>
 		<div class="card-footer text-muted">
         </div>
