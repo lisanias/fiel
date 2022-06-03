@@ -41,9 +41,9 @@ class IdentidadeController extends Controller
     public function vencidas()
     {
         $classColor = 'danger';
-        $listTitle = 'Identidades Ministerias Esperando Renovação';
+        $listTitle = 'Identidades Ministerias Vencidas';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
-            ->where('validade', '<=', now()->addMonth())->where('arquivo', '=', Null)
+            ->where('validade', '<=', now()->year.'-'.now()->month.'-'.now()->daysInMonth)->where('arquivo', '=', Null)
             ->paginate(10);
 
         return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
