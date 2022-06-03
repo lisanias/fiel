@@ -284,7 +284,7 @@
 				
 							<tbody> 
 							@foreach($identidades as $identidade)
-							<tr class='@if($identidade->ignorar_renovacao == 1) bg-dark @elseif($identidade->validade < now()->format('Y-m-a')) bg-danger @else bg-success @endif text-white'>
+							<tr class='@if($identidade->arquivo == 1) bg-dark @elseif($identidade->validade < now()->format('Y-m-a')) bg-danger @else bg-success @endif text-white'>
 								<td style='vertical-align: middle;'>
 									<small>{{str_pad($identidade->member_id, 4, "0", STR_PAD_LEFT)}}<br></small>
 									<strong class="">{{str_pad($identidade->id, 4, "0", STR_PAD_LEFT)}}</strong>

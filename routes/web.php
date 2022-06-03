@@ -56,6 +56,7 @@ Route::get('identidades/vencidas', 'Identidade\IdentidadeController@vencidas')->
 Route::get('identidades/antigas', 'Identidade\IdentidadeController@antigas')->name('antigas');
 Route::get('identidade/{id}/pdf',      'Identidade\IdentidadeController@pdf')->name('pdf');
 Route::get('identidade/{id}/imprimir',      'Identidade\IdentidadeController@print')->name('imprimir');
+Route::get('identidade/{id}/arquivo',      'Identidade\IdentidadeController@arquivo')->name('arquivo');
 Route::post('identidade/procurar',      'Identidade\IdentidadeController@find')->name('id.find');
 Route::resource('identidades',      'Identidade\IdentidadeController');
 

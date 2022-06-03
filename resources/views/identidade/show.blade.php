@@ -131,20 +131,8 @@
             <h3 class="mb-0">{{__('Identidade Ministerial')}}</h3>
         </div>
         
-        @if ($identidade->validade < now())
-            <div class="card-body">
-                <div class="alert alert-dark mb-0 text-center" role="alert">
-                    <h1><i class="fas fa-exclamation-circle"></i></h1>
-                    <p class="mb-0">
-                        @if ($identidade->validade < now() && $identidade->ignorar_renovacao == NULL)
-                        Identidade Ministerial Vencida
-                        @else
-                        Identidade Ministeria Antiga
-                        @endif
-                    </p>                    
-                </div>
-            </div>
-        @endif
+        @include('identidade.includes.msgTipo')
+
 		<div class="card-body" style="height: 298.66px;">
 
             <div class="envelope">
@@ -177,19 +165,9 @@
         
         </div>
         <div class="card-body ml-3">
-            <div class="mb-3">
-                @if($member)
-                    <a class="btn btn-info" href="{{route('members.show', $identidade->member_id)}}"><i class="far fa-user mr-2"></i>Membro</a>
-                @endif
-                @if ($igreja)
-                    <a class="btn btn-info" href="{{route('igrejas.show', $igreja->id)}}"><i class="fas fa-church mr-2"></i>Igreja</a>
-                @endif
-                <a class="btn btn-info" href="{{route('identidades.index')}}"><i class="fas fa-list mr-2"></i>Listar</a>
-                @if(!$identidade->data_impressao)
-                <a class="btn btn-success" href="{{route('imprimir', $identidade->id)}}" target="_blank"><i class="fas fa-print mr-2"></i>IMPRIMIR</a>
-                <a class="btn btn-warning" href="{{route('identidades.edit', $identidade->id)}}"><i class="fas fa-edit mr-2"></i>EDITAR</a>
-            @endif
-            </div>
+            
+            @include('identidade.includes.menu')
+
             <h3>{{Str::upper($member->nome ?? $identidade->nome)}}</h3>
             <p>
                 {{str_pad($identidade->id, 6, "0", STR_PAD_LEFT)}}

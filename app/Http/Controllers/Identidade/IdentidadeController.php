@@ -43,7 +43,7 @@ class IdentidadeController extends Controller
         $classColor = 'danger';
         $listTitle = 'Identidades Ministerias Esperando Renovação';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
-            ->where('validade', '<', now())->where('ignorar_renovacao', '=', Null)
+            ->where('validade', '<', now())->where('arquivo', '=', Null)
             ->paginate(10);
 
         return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
@@ -59,7 +59,7 @@ class IdentidadeController extends Controller
         $classColor = 'warning';
         $listTitle = 'Identidades Ministerias ANTIGAS';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
-            ->where('validade', '<', now())->where('ignorar_renovacao', '=', 1)
+            ->where('validade', '<', now())->where('arquivo', '=', 1)
             ->paginate(10);
             
         return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
@@ -90,7 +90,7 @@ class IdentidadeController extends Controller
         }
 
         // verificar identidades que estão para revação e marcar como renovadas mudando para '1' o campo 'ignorar_renovaao'
-        $updateRenovacao = Identidade::where('ignorar_renovacao', '=', Null)->where('data_impressao','<>',null)->where('validade','<',now())->update(['ignorar_renovacao' => 1]);
+        $updateRenovacao = Identidade::where('arquivo', '=', Null)->where('data_impressao','<>',null)->where('validade','<',now())->update(['arquivo' => 1]);
 
         $identidade = Identidade::create($request->all());
 
@@ -146,6 +146,23 @@ class IdentidadeController extends Controller
         $member = $identidade->member;
         $igreja = ($identidade->member) ? Igreja::find($identidade->member->igreja_id) : '';
         return view('identidade.edit', compact('identidade', 'igreja'));
+    }
+
+    public function arquivo($id)
+    {
+        $identidade = Identidade::find($id);
+        $update = $identidade->update(['arquivo' => 1]);
+
+        if($update){
+            return redirect()
+                ->route('identidades.show', $id)
+                ->with(['alert'=>'Atualizado com sucesso', 'alert_type'=>'success']);
+        } else {
+            return redirect()
+                ->route('members.show', $identidade->member_id)
+                ->with(['alert'=>'Houve algum erro e os dados não foram atualizados', 'alert_type'=>'success']);
+        }
+
     }
 
     /**

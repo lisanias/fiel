@@ -22,9 +22,9 @@
 					<td style='vertical-align: middle;' >
 						{{Str::upper($igreja->nome)}}<br>
 						<small style='color:#87CEEB'>
-							@isset($igreja->bairro) {{$igreja->bairro}}, @endisset
-							{{Str::ucfirst(Str::lower($igreja->cidade))}}
-							@if($igreja->estado) - {{$igreja->estado}}@endif 
+						{{$igreja->cidade }}
+						@if(!is_null($igreja->bairro)) - {{$igreja->bairro}} @endif
+						@if(!is_null($igreja->uf)) - {{$igreja->uf}} @endif	
 						</small>
 					</td>
 					<td style='vertical-align: middle;' class="text-right">

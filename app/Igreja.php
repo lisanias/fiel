@@ -9,7 +9,7 @@ class Igreja extends Model
 	protected $dates = ['created_at', 'updated_at', 'membro_desde'];
 	
     protected $fillable = [
-        'nome', 'nome_abreviado', 'email', 'membro_desde', 'telefone', 'pastor_id'
+        'nome', 'nome_abreviado', 'cnpj','email', 'membro_desde', 'telefone', 'pastor_id'
     ];
 
     public function getNomeCidadeAttribute()	 	 
@@ -24,6 +24,34 @@ class Igreja extends Model
         }
 
         return($nome.' — '.$cidade.'-'.$uf);
+    }
+
+    public function Adr($data) 
+    {			
+        if (!$this->addresses->isEmpty()) {
+                $result = $this->addresses()->get()->first()->$data;
+        } else {
+                $result = NULL;
+        }
+
+        return($result);
+    }
+
+    public function getCidadeAttribute(){
+        $result = $this->Adr('cidade');
+        return($result);
+    }
+
+    public function getBairroAttribute()	 	 
+    {			
+        $result = $this->Adr('bairro');
+        return($result);
+    }
+
+    public function getUfAttribute()	 	 
+    {			
+        $result = $this->Adr('uf');
+        return($result);
     }
 
     public function member()

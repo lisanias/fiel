@@ -1,6 +1,6 @@
 <!-- Nome -->
 <div class="form-group">
-	{!! Form::label('nome', __('Nome')) !!}
+	{!! Form::label('nome', __('Nome Oficial (Razão Social')) !!}
 
 	@error('nome')
 		{!! Form::text('nome', null, ['class' => 'form-control is-invalid']) !!}
@@ -12,7 +12,7 @@
 
 <!-- Nome Abreviado -->
 <div class="form-group">
-	{!! Form::label('nome_abreviado', __('Nome Abreviado')) !!}
+	{!! Form::label('nome_abreviado', __('Nome')) !!}
 
 	@error('nome_abreviado')
 		{!! Form::text('nome_abreviado', null, ['class' => 'form-control is-invalid']) !!}
@@ -21,9 +21,20 @@
 		{!! Form::text('nome_abreviado', null, ['class' => 'form-control']) !!}
     @enderror
     <small id="nome_abreviadoHelpBlock" class="form-text text-gray-500">
-        Nome Abreviado (opcional) caso o nome normal tenha mais de 34 caracteres ou
-        nome da igreja como deseja que fique na ID ministerial.
+        Nome com que a igreja é conhecida
     </small>
+</div>
+
+<!-- CNPJ -->
+<div class="form-group">
+	<?php $invalid = ($errors->has("cnpj")?'is-invalid':'') ?>
+
+	{!! Form::label('cnpj', __('CNPJ')) !!}
+	{!! Form::text('cnpj', null, ['class' => 'form-control '.$invalid]) !!}
+
+	@error('cnpj')
+	    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
 </div>
 
 <!-- E-mail -->

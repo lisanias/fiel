@@ -57,7 +57,7 @@
                     <div class="d-flex flex-column">
                         <div class='label'>
                             <i class='fas fa-tag'></i>
-                            {{__('Nome abreviado')}}
+                            {{__('Nome')}}
                         </div>
                         <div class="field w75 form-text mt-0">
                             <?php
@@ -65,9 +65,37 @@
                             ?>
                             {{ $igreja->nome_abreviado ?? $str40 }}
                             <small id="nome_abreviadoHelpBlock" class="form-text text-gray-500 mt-0"><em>
-                                Nome Abreviado caso o nome normal tenha mais de 35 caracteres ou 
-                                nome da igreja como deseja que fique na ID ministerial.
+                                Nome com que a igreja é conhecida
                             </em></small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class='fas fa-tag'></i>
+                            {{__('Razão Social')}}
+                        </div>
+                        <div class="field w75 form-text mt-0">
+                            {{ $igreja->nome }}
+                        </div>
+                        <small id="nome_abreviadoHelpBlock" class="form-text text-gray-500 mt-0"><em>
+                            Nome oficial da igreja (razão Social)
+                        </em></small>
+                    </div>
+
+                    <div class="d-flex flex-column mt-4">
+                        <div class='label'>
+                            <i class='fas fa-tag'></i>
+                            {{__('CNPJ')}}
+                        </div>
+                        <div class="field w75 form-text mt-0">
+                            @if(is_null($igreja->cnpj))                                
+                            <small id="nome_abreviadoHelpBlock" class="form-text text-danger mt-0"><em>
+                            Adicione o CNPJ clicando em Editar
+                            </em></small>
+                            @else
+                            {{ $igreja->cnpj}}
+                            @endif
                         </div>
                     </div>
 
@@ -76,8 +104,14 @@
                             <i class='fas fa-at'></i>
                             {{__('E-mail')}}
                         </div>
-                        <div class="field w75">                
-                            {{ $igreja->email ?? ". . ." }}
+                        <div class="field w75">
+                        @if(is_null($igreja->email))                                
+                            <small id="nome_abreviadoHelpBlock" class="form-text text-danger mt-0"><em>
+                            Sem endereço eletrónico cadastrado!<br>Adicione o email clicando em Editar
+                            </em></small>
+                        @else
+                            {{ $igreja->email}}
+                        @endif
                         </div>
                     </div>
 
@@ -87,17 +121,27 @@
                             {{__('Telefone da Igreja')}}
                         </div>
                         <div class="field w75">                
-                            {{ $igreja->telefone ?? ". . ." }}
+                        @if(is_null($igreja->telefone))                                
+                            <small id="nome_abreviadoHelpBlock" class="form-text text-danger mt-0"><em>
+                            Sem telefone cadastrado!<br>Adicione o telefone clicando em Editar
+                            </em></small>
+                        @else
+                            {{ $igreja->telefone}}
+                        @endif
                         </div>
                     </div>
 
                     <div class="d-flex flex-column mt-4">
                         <div class='label'>
                             <i class="fas fa-user-clock"></i>
-                            {{__('Membro desde')}}
+                            {{__('Esta Igreja é membro desde')}}
                         </div>
-                        <div class="field w75">                
-                            {!! $igreja->membro_desde ? $igreja->membro_desde->format('d/m/Y') : ". . ." !!}
+                        <div class="field w75">
+                        @if(isset($igreja->membro_desde))
+                            {{ $igreja->membro_desde->format('d/m/Y') }}
+                        @else
+                        {{ $igreja->created_at->format('d/m/Y') }} (Data de cadastro)
+                        @endif                            
                         </div>
                     </div>
 
