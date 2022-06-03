@@ -43,7 +43,7 @@ class IdentidadeController extends Controller
         $classColor = 'danger';
         $listTitle = 'Identidades Ministerias Esperando Renovação';
         $identidades = Identidade::orderBy('validade', 'DESC', SORT_REGULAR, true)
-            ->where('validade', '<', now())->where('arquivo', '=', Null)
+            ->where('validade', '<=', now()->addMonth())->where('arquivo', '=', Null)
             ->paginate(10);
 
         return view('identidade.index', compact('identidades', 'listTitle', 'classColor'));
