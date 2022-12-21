@@ -189,7 +189,13 @@
                         @if ($igreja)                        
                             <tr><td class="t-a-r">Igreja</td><td>{{ Str::upper($igreja->nome_abreviado ?? '') }}</td></tr>
                             <tr><td class="t-a-r">Razao Social</td><td>{{ Str::upper($igreja->nome) ?? '' }}</td></tr>
-                            <tr><td class="t-a-r">Membro desde</td><td>{{ $igreja->membro_desde->format('d-m-Y') ?? $igreja->created_at }}</td></tr>
+                            <tr><td class="t-a-r">Membro desde</td><td>
+                                @if(isset($igreja->membro_desde))
+                                    {{ $igreja->membro_desde->format('d/m/Y') }}
+                                @else
+                                    {{ $igreja->created_at->format('d/m/Y') }} (Data de cadastro)
+                                @endif   
+                            </td></td></tr>
                         @endif                    
                     </table>
                 </div>
